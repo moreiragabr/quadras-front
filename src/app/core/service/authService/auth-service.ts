@@ -23,6 +23,7 @@ export class AuthService {
     this.router.navigate(['']);
     localStorage.removeItem('currentUser');
     localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('currentUserAdmin');
   }
 
   authenticate(): void {
@@ -32,6 +33,14 @@ export class AuthService {
 
   isLogged(): boolean {
     if (localStorage.getItem('isAuthenticated') == 'true') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isAdmin(): boolean {
+    if (localStorage.getItem('currentUserAdmin') == 'true') {
       return true;
     } else {
       return false;
@@ -53,6 +62,4 @@ export class AuthService {
   currentUser(): Observable<string> {
     return this.http.delete<string>(this.API + "usuario-atual", { responseType: 'text' as 'json' });
   }
-
-
 }

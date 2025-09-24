@@ -31,8 +31,10 @@ export class Login {
     this.authService.login(this.loginRequest).subscribe({
 
       next: (user) => {
-        console.log(user)
         localStorage.setItem('currentUser', JSON.stringify(user));
+        if(user.tipoUsuario=="ADMIN"){
+          localStorage.setItem('currentUserAdmin', 'true');
+        }
         this.authService.authenticate();
       },
 

@@ -9,4 +9,11 @@ import { RouterLink } from '@angular/router';
 })
 export class Home {
 
+  admin():boolean{
+    if(localStorage.getItem('currentUserAdmin') == 'true'){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

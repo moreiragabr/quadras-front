@@ -1,0 +1,42 @@
+.cor{
+    background-color: #ffffff00;
+    align-content: center;
+}
+
+.border-radius{
+    border-radius: 10px !important;
+    
+}
+
+.border-color{
+    border-color: #0554F2 !important;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden; // Esconde as bordas internas que ultrapassam o radius
+}
+
+.botao-editar{
+    background-color: #d6f2054c;
+    height: 3em;
+    width: 3em;
+}
+
+.botao-excluir{
+    background-color: #f205054c;
+    height: 3em;
+    width: 3em;
+}
+
+.botao-aumentar{
+    background-color: #0534f24c;
+    height: 3em;
+    width: 3em;
+}
+
+.icone{
+    font-size: 1.6em;
+}
+
+.icones{
+     
+}

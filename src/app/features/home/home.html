@@ -6,5 +6,10 @@
         <div class="col" routerLink="/quadras">
             Quadras
         </div>
+        @if(admin()){
+        <div class="col" routerLink="/admin-dashboard">
+            Admin Dashboard
+        </div>
+    }
     </div>
 </div>

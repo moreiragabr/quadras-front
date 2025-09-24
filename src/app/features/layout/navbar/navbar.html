@@ -17,6 +17,13 @@
             <div class="cor">times</div>
           </a>
         </li>
+        @if(authService.isAdmin()){
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-dashboard">
+            <div class="cor">admin</div>
+          </a>
+        </li>
+        }
         <li class="nav-item">
           @if(authService.isLogged()){
           <div class="btn-group">
