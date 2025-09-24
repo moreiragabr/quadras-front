@@ -1,8 +1,9 @@
 .principal {
-    background: linear-gradient(135deg, #d3c4c4 0%, #bebdbd 100%);
+    background: linear-gradient(135deg, #0554F2 0%, #056CF2 100%);
     background-attachment: fixed;
     border-radius: 1em;
     padding: 2em;
+    color: #F2E8D5;
 }
 
 .centro{
@@ -17,6 +18,10 @@
 
 h1{
     text-align: center;
+    color: #F2E8D5;
+    font-family: "Rubik Mono One", monospace;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .form{

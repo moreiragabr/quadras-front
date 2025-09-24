@@ -20,14 +20,6 @@ export class UserService {
     return this.http.get<User>(this.API + "findById/:" + id);
   }
 
-  save(user: User): Observable<User>{
-    return this.http.post<User>(this.API + "save", user);
-  }
-
-  delete(id:number): Observable<void>{
-    return this.http.delete<void>(this.API + "delete/:" +id);
-  }
-
   update(id:number, user:User): Observable<User>{
     return this.http.put<User>(this.API + "update/:" + id, user);
   }

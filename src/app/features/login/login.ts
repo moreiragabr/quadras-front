@@ -15,21 +15,43 @@ export class Login {
 
   authService = inject(AuthService);
   router = inject(Router);
-
-  email!: string;
-  senha!: string;
+  errorMessage?: string;
+  loginRequest = { email: '', senha: '' };
 
   login() {
-    console.log(this.email, this.senha)
-    if (this.email == "admin" && this.senha == "admin") {
-      this.authService.login();
-      this.router.navigate(['']);
-    } else {
+
+    if (!this.loginRequest.email || !this.loginRequest.senha) {
       Swal.fire({
-        title: 'Senha ou email incorretos!',
+        title: 'Insira todos os dados!',
         icon: 'warning',
       })
+      return;
     }
+
+    this.authService.login(this.loginRequest).subscribe({
+
+      next: (user) => {
+        console.log(user)
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.authService.authenticate();
+      },
+
+      error: (error) => {
+        if (error.status === 401) {
+          this.errorMessage = 'Email ou senha incorretos';
+        } else if (error.status === 403) {
+          this.errorMessage = 'Acesso negado. Verifique suas permissões.';
+        } else if (error.status === 0) {
+          this.errorMessage = 'Erro de conexão. Verifique se o servidor está rodando.';
+        } else {
+          this.errorMessage = 'Erro inesperado. Tente novamente.';
+        }
+        Swal.fire({
+          title: this.errorMessage,
+          icon: 'warning',
+        })
+      }
+    });
   }
 
 }
