@@ -17,11 +17,19 @@ export class UserService {
   }
 
   getUserById(id: number): Observable<User>{
-    return this.http.get<User>(this.API + "findById/:" + id);
+    return this.http.get<User>(this.API + "findById/" + id);
   }
 
-  update(id:number, user:User): Observable<User>{
-    return this.http.put<User>(this.API + "update/:" + id, user);
+  save(user:any): Observable<User>{
+    return this.http.post<User>(this.API+"save", user);
+  }
+
+  delete(id:number): Observable<void>{
+    return this.http.delete<void>(this.API + "delete/" + id);
+  }
+
+  update(id:number, user:any): Observable<User>{
+    return this.http.put<User>(this.API + "update/" + id, user);
   }
 
   adicionarTimeProprietario(idUser:number, idTeam:number): Observable<User>{

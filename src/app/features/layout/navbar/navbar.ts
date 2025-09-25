@@ -12,6 +12,10 @@ import Swal from 'sweetalert2';
 export class Navbar {
   authService = inject(AuthService);
 
+  ngInit(){
+    
+  }
+
   sair() {
     Swal.fire({
       title: "Deseja sair de sua conta?",
