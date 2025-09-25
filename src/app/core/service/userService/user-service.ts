@@ -48,4 +48,8 @@ export class UserService {
     return this.http.delete<User>(this.API + "removerTimesJogador?idUsuario=" + idUser + "&idTime=" + idTeam);
   }
 
+  adicionarQuadraProprietario(idUser:number, idQuadra:number): Observable<User>{
+    return this.http.put<User>(this.API + "adicionarQuadraProprietario?idUsuario=" + idUser + "&idQuadra=" + idQuadra, null);
+  }
+
 }

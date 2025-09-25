@@ -2,7 +2,7 @@ import { Horario } from "./horario";
 import { User } from "./user";
 
 export class Quadra{
-    id?:number;
+    id!:number;
     nome?:string;
     // nota?:string;
     valorHora?:number;

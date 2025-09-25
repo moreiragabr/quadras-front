@@ -4,7 +4,7 @@ import { Reserva } from "./reserva";
 import { Time } from "./time";
 
 export class User {
-    id: number = 0;
+    id!: number;
     nome?: string;
     email?: string;
     senha?: string;

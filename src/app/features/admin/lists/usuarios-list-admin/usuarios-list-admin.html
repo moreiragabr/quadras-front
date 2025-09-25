@@ -160,7 +160,6 @@
                     <h1 id="staticBackdropLabel">
                         <div class="fonte fonte-preta">Adicionar novo usuário</div>
                     </h1>
-                    <!-- <button type="button" class="btn-close" (click)="closeModalNewUser()" aria-label="Close"></button> -->
                 </div>
                 <div class="m-2">
                     <label for="nome" class="form-label">Nome</label>
@@ -254,7 +253,8 @@
                                         delete_forever
                                     </span></p>
                                 }
-                                <span class="material-symbols-outlined mini-botao-adicionar">
+                                <span class="material-symbols-outlined mini-botao-adicionar"
+                                    (click)="openSwalModal(editedUser.id,'quadras')">
                                     add
                                 </span>
                             </div>

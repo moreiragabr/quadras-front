@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TimeService } from '../../../../core/service/timeService/time-service';
 import { QuadraService } from '../../../../core/service/quadraService/quadra-service';
 import { Time } from '../../../../core/models/time';
+import { Quadra } from '../../../../core/models/quadra';
 
 @Component({
   selector: 'app-usuarios-list-admin',
@@ -20,6 +21,7 @@ export class UsuariosListAdmin {
   quadraService = inject(QuadraService);
 
   listaUsuarios?: User[];
+  quadras!: Quadra[];
 
   selectedUser: User = {
     id: 1,
@@ -217,6 +219,7 @@ export class UsuariosListAdmin {
 
         this.userService.update(id, user).subscribe({
           next: (dados) => {
+            console.log(user);
             Swal.fire({
               title: "Usuário atualizado com sucesso!",
               icon: 'success',
@@ -417,8 +420,53 @@ export class UsuariosListAdmin {
       })
     }
 
-    if (type == "Quadras") {
+    if (type == "quadras") {
+      this.quadraService.findAll().subscribe({
+        next: (dados) => {
+          this.quadras = dados
 
+          const opcoesTimes = this.converterListaParaInputOptions(this.quadras);
+
+          Swal.fire({
+            title: "Selecione a quadra",
+            input: "select",
+            // Usa o objeto de opções recém-criado
+            inputOptions: opcoesTimes,
+            inputPlaceholder: "Selecione uma quadra...",
+            showCancelButton: true,
+            // 4. Capturar o Time Selecionado (Passo 3)
+            preConfirm: (quadraId) => {
+              return this.encontrarQuadraSelecionada(this.quadras, quadraId);
+            }
+          })
+            // O then é executado após o usuário confirmar a seleção
+            .then((resultado) => {
+              if (resultado.isConfirmed && resultado.value) {
+                const quadraSelecionada = resultado.value;
+                console.log("Quadra selecionada:", quadraSelecionada);
+
+                this.userService.adicionarQuadraProprietario(id, quadraSelecionada.id).subscribe({
+                  next: (dados) => {
+                    Swal.fire({
+                      title: "Quadra adicionada com sucesso!",
+                      icon: 'success',
+                    })
+                    this.ngOnInit();
+                    this.closeModalEditUser(false);
+                  },
+
+                  error: (erro) => {
+                    Swal.fire({
+                      title: erro.status,
+                      text: "Quadra não adicionada!",
+                      icon: 'error',
+                    })
+                  }
+                })
+              }
+            });
+        }
+      })
     }
   }
 
@@ -445,9 +493,16 @@ export class UsuariosListAdmin {
     return timeEncontrado; // Retorna o objeto completo
   }
 
+  encontrarQuadraSelecionada(quadras: Quadra[], quadraIdSelecionado: string): any | null {
+    // Busca o objeto completo na lista que você acabou de carregar
+    const quadraEncontrada = quadras.find(quadra => quadra.id.toString() === quadraIdSelecionado);
 
+    if (!quadraEncontrada) {
+      Swal.showValidationMessage(`Quadra com ID ${quadraIdSelecionado} não encontrada.`);
+      return null; // Retorna null para manter o modal aberto e mostrar a validação
+    }
 
-  // footer: '<a href="#">Why do I have this issue?</a>'
-
+    return quadraEncontrada; // Retorna o objeto completo
+  }
 
 }

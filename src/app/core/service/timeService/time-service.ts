@@ -19,5 +19,13 @@ export class TimeService {
   getAll(): Observable<Time[]> {
     return this.http.get<Time[]>(this.API + "findAll");
   }
+
+  update(id: number, time: any): Observable<Time> {
+    return this.http.put<Time>(this.API + "update/" + id, time);
+  }
+
+  save(time: any): Observable<Time> {
+    return this.http.post<Time>(this.API + "save", time);
+  }
 }
 
