@@ -16,8 +16,16 @@ export class QuadraService {
     return this.http.delete<void>(this.API + "/" + id);
   }
 
-  findAll(): Observable<Quadra[]>{
+  findAll(): Observable<Quadra[]> {
     return this.http.get<Quadra[]>(this.API);
+  }
+
+  save(quadra: any): Observable<Quadra> {
+    return this.http.post<Quadra>(this.API, quadra);
+  }
+
+  update(id: number, quadra: any): Observable<Quadra> {
+    return this.http.put<Quadra>(this.API + "/" + id, quadra);
   }
 
 }
