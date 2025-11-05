@@ -1,0 +1,15 @@
+<div class="container d-flex justify-content-center mt-5">
+    <div class="row gap-5">
+        <div class="col" routerLink="/times">
+            Times
+        </div>
+        <div class="col" routerLink="/quadras">
+            Quadras
+        </div>
+        @if(admin()){
+        <div class="col" routerLink="/admin-dashboard">
+            Admin Dashboard
+        </div>
+    }
+    </div>
+</div>
