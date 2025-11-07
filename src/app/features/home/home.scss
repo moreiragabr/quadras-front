@@ -1,8 +1,83 @@
-.col{
+.home-background {
+    margin: 0;
+    padding: 0;
+    background-color: #F2E8D5;
+    height: calc(100vh - 100px)
+}
+
+.col {
     background-color: #056CF2;
     color: #F2E8D5;
     width: 20vw;
     height: 40vh;
     text-align: center;
     border-radius: 6px;
+}
+
+.font-size-52 {
+    font-size: 52px;
+}
+
+.font-size-14 {
+    font-size: 14px;
+}
+
+.cor1 {
+    text-align: center;
+    color: #0554F2;
+    margin-bottom: 20px;
+}
+
+.cor2 {
+    color: #F2E8D5;
+    text-align: center;
+    background-color: #056CF2;
+    margin-bottom: 40px;
+    border-radius: 5px;
+}
+
+.div-textos {
+    height: 80%;
+    margin-top: 10%;
+}
+
+.texto-pequeno{
+    margin-top: 30px;
+}
+
+.imagem-arrow{
+    object-fit: contain;
+    height: 50px;
+    width: 50px;
+}
+
+.posicao-imagem-arrow{
+    display: flex;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.entrada-e-pulo {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: 
+    entradaSuave 1.5s ease-out 0.5s forwards,
+    bounce 2s infinite 2s ease-in-out; /* Começa depois da entrada */
+  cursor: pointer;
+}
+
+@keyframes entradaSuave {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
