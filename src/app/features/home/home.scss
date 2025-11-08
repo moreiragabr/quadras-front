@@ -6,63 +6,72 @@
 }
 
 .col {
-    background-color: #056CF2;
-    color: #F2E8D5;
-    width: 20vw;
-    height: 40vh;
-    text-align: center;
-    border-radius: 6px;
+  background-color: #056CF2;
+  color: #F2E8D5;
+  width: 20vw;
+  height: 40vh;
+  text-align: center;
+  border-radius: 6px;
 }
 
 .font-size-52 {
-    font-size: 52px;
+  font-size: 52px;
 }
 
 .font-size-14 {
-    font-size: 14px;
+  font-size: 14px;
+}
+
+.font-size-20 {
+  font-size: 20px;
 }
 
 .cor1 {
-    text-align: center;
-    color: #0554F2;
-    margin-bottom: 20px;
+  text-align: center;
+  color: #0554F2;
+  margin-bottom: 20px;
 }
 
 .cor2 {
-    color: #F2E8D5;
-    text-align: center;
-    background-color: #056CF2;
-    margin-bottom: 40px;
-    border-radius: 5px;
+  color: #F2E8D5;
+  text-align: center;
+  background-color: #056CF2;
+  margin-bottom: 40px;
+  border-radius: 5px;
 }
 
 .div-textos {
-    height: 80%;
-    margin-top: 10%;
+  height: 80%;
+  margin-top: 10%;
 }
 
 .texto-pequeno{
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .imagem-arrow{
-    object-fit: contain;
-    height: 50px;
-    width: 50px;
+  object-fit: contain;
+  height: 50px;
+  width: 50px;
 }
 
 .posicao-imagem-arrow{
-    display: flex;
-    margin: auto;
-    margin-bottom: 10px;
+  display: flex;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.posicao-imagem-arrow-2{
+  display: flex;
+  margin: auto;
 }
 
 .entrada-e-pulo {
   opacity: 0;
   transform: translateY(30px);
   animation: 
-    entradaSuave 1.5s ease-out 0.5s forwards,
-    bounce 2s infinite 2s ease-in-out; /* Começa depois da entrada */
+  entradaSuave 1.5s ease-out 0.5s forwards,
+  bounce 2s infinite 2s ease-in-out; /* Começa depois da entrada */
   cursor: pointer;
 }
 
@@ -80,4 +89,34 @@
   50% {
     transform: translateY(-8px);
   }
+}
+
+.home-background-2{
+    margin: 0;
+    padding: 0;
+    background-color: #0554F2;
+    height: 100vh;
+    grid-template-columns: 10% 40% 40%;
+}
+
+.homesection-2{
+  gap: 2vw;
+}
+
+.text-homesection-2{
+  background-color: #F2E8D5;
+  border-radius: 5px;
+  height: fit-content;
+  width: 50vw;
+  padding: 3vh 1vw 3vh 1vw;
+}
+
+.text-homesection-2-detail{
+  font-size: 21px;
+  color: #0554F2;
+  text-align: center;
+}
+
+.b-margin{
+  margin-bottom: 10vh;
 }
