@@ -10,6 +10,7 @@ import { adminGuard } from './core/guards/admin-guard';
 import { UsuariosListAdmin } from './features/admin/lists/usuarios-list-admin/usuarios-list-admin';
 import { QuadrasListAdmin } from './features/admin/lists/quadras-list-admin/quadras-list-admin';
 import { TimesListAdmin } from './features/admin/lists/times-list-admin/times-list-admin';
+import { Mapa } from './features/mapa/mapa';
 
 export const routes: Routes = [
     {
@@ -28,10 +29,14 @@ export const routes: Routes = [
                 canActivate: [authGuard]
             },
             {
+                path: 'mapa',
+                loadComponent: () => Mapa,
+                data: { preload: true }
+            },
+            {
                 path: 'quadras',
                 loadComponent: () => QuadrasList,
                 data: { preload: true },
-                canActivate: [authGuard]
             },
             {
                 path: 'admin-dashboard',

@@ -1,3 +1,4 @@
+
 .home-background {
     margin: 0;
     padding: 0;
@@ -62,8 +63,12 @@
 }
 
 .posicao-imagem-arrow-2{
-  display: flex;
-  margin: auto;
+    margin: 15px auto 15px auto;
+    height: 50px;
+}
+
+.posicao-imagem-arrow-2 img{
+  height: min-content;
 }
 
 .entrada-e-pulo {
@@ -101,6 +106,12 @@
 
 .homesection-2{
   gap: 2vw;
+}
+
+.imagem-quadra img{
+  height: auto;
+  width: 300px;
+
 }
 
 .text-homesection-2{
