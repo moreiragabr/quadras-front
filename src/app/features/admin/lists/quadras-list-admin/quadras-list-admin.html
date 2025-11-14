@@ -151,8 +151,16 @@
                     </select>
                 </div>
                 <div class="m-2">
-                    <label for="nome" class="form-label">Localização</label>
-                    <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.localizacao">
+                    <label for="nome" class="form-label">Estado</label>
+                    <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.estado">
+                </div>
+                <div class="m-2">
+                    <label for="nome" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.cidade">
+                </div>
+                <div class="m-2">
+                    <label for="nome" class="form-label">Bairro</label>
+                    <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.bairro">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn botao-cancelar" (click)="closeModalNewQuadra()"><span
@@ -247,9 +255,18 @@
                             </div>
                             <hr>
                             <div class="mb-3">
-                                <label for="nome" class="form-label">Localização</label>
-                                <input type="text" class="form-control" id="nome"
-                                    [(ngModel)]="editedQuadra!.localizacao">
+                                <label for="nome" class="form-label">Estado</label>
+                                <input type="text" class="form-control" id="nome" [(ngModel)]="editedQuadra!.estado">
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" id="nome" [(ngModel)]="editedQuadra!.cidade">
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Bairro</label>
+                                <input type="text" class="form-control" id="nome" [(ngModel)]="editedQuadra!.bairro">
                             </div>
                             <hr>
                         </div>

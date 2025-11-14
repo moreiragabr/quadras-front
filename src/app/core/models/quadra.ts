@@ -8,6 +8,9 @@ export class Quadra{
     valorHora?:number;
     partidaGravavel?:boolean;
     localizacao?:string;
+    cidade?:string;
+    estado?:string;
+    bairro?:string;
     tipoQuadra?:string;
     horarios?:Horario[];
     proprietario?:User;

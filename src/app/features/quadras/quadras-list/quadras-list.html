@@ -1,1 +1,25 @@
-<div class="container text-center">EM DESENVOLVIMENTO</div>
+<div class="d-flex container-cards">
+    @for(quadra of quadras; track quadra.id){
+    <div class="d-flex flex-column card-azul m-auto text-center elemento-animado">
+        <div>
+            <img class="imagem-quadra" src="../../../../assets/images/pictures/quadra-minimalista.png" alt="">
+        </div>
+        <h2 class="cor2 font-size-20 fonte">
+            {{quadra.nome}}
+        </h2>
+        <h3 class="cor2 font-size-20 fonte-2">
+            {{quadra.tipoQuadra | capitalize}}
+        </h3>
+        <h3 class="cor2 font-size-16 fonte-2 bairro">
+            {{quadra.bairro}}
+        </h3>
+        <h3 class="cor2 font-size-16 fonte-2">
+            {{quadra.cidade}} - {{quadra.estado}}
+        </h3>
+        <div class="botões d-flex flex-row">
+            <div class="botão cor3 font-size-18 fonte-2">Mais informações</div>
+            <div class="botão cor3 font-size-18 fonte-2">Alugar horário</div>
+        </div>
+    </div>
+    }
+</div>

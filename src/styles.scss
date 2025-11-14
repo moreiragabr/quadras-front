@@ -30,3 +30,26 @@ body {
   font-weight: 900;
   font-style: normal;
 }
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.elemento-animado {
+  animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+.elemento-animado-2 {
+  animation: slideInFromRight 1s ease-out forwards;
+}
+
+.elemento-animado-3 {
+  animation: slideInFromRight 1.2s ease-out forwards;
+}
