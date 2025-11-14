@@ -3,9 +3,9 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  -ms-overflow-style: none;
+  // -ms-overflow-style: none;
   scrollbar-width: none;
-  overflow-y: scroll; /* Mantém a rolagem ativa */
+  // overflow-y: scroll; /* Mantém a rolagem ativa */
 }
 
 .body::-webkit-scrollbar {
