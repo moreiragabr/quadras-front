@@ -11,6 +11,7 @@ import { UsuariosListAdmin } from './features/admin/lists/usuarios-list-admin/us
 import { QuadrasListAdmin } from './features/admin/lists/quadras-list-admin/quadras-list-admin';
 import { TimesListAdmin } from './features/admin/lists/times-list-admin/times-list-admin';
 import { Mapa } from './features/mapa/mapa';
+import { QuadrasDetail } from './features/quadras/quadras-detail/quadras-detail';
 
 export const routes: Routes = [
     {
@@ -36,6 +37,11 @@ export const routes: Routes = [
             {
                 path: 'quadras',
                 loadComponent: () => QuadrasList,
+                data: { preload: true },
+            },
+            {
+                path: 'quadras/:id',
+                loadComponent: () => QuadrasDetail,
                 data: { preload: true },
             },
             {

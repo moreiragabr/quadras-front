@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { QuadraService } from '../../../core/service/quadraService/quadra-service';
 import { Quadra } from '../../../core/models/quadra';
 import { CapitalizePipe } from '../../../shared/pipes/capitalize-pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quadras-list',
@@ -11,8 +12,14 @@ import { CapitalizePipe } from '../../../shared/pipes/capitalize-pipe';
 })
 export class QuadrasList {
   quadraService = inject(QuadraService);
+  
+  constructor(private router: Router) {}
 
   quadras!: Quadra[];
+
+  verInformacoes(quadraId: number): void {
+    this.router.navigate(['/quadras', quadraId]);
+  }
 
   ngOnInit(): void {
     this.quadraService.findAll().subscribe({
