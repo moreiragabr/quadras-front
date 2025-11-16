@@ -1,4 +1,17 @@
 <div class="d-flex container-cards">
+    @if(authService.isLogged()){
+    <div class="d-flex flex-column card-azul m-auto text-center elemento-animado-3">
+        <div>
+            <img class="imagem-quadra" src="../../../../assets/images/pictures/empresario mexendopc.jpg" alt="">
+        </div>
+        <h2 class="cor2 font-size-32 fonte">
+            É dono de uma quadra?
+        </h2>
+        <div class="botões d-flex flex-row">
+            <div class="botão-2 cor3 font-size-22 fonte-2">Adicione agora sua quadra em nosso sistema!</div>
+        </div>
+    </div>
+    }
     @for(quadra of quadras; track quadra.id){
     <div class="d-flex flex-column card-azul m-auto text-center elemento-animado">
         <div>

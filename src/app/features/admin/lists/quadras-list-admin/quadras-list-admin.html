@@ -151,6 +151,10 @@
                     </select>
                 </div>
                 <div class="m-2">
+                    <label for="nome" class="form-label">Descrição</label>
+                    <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.descricao">
+                </div>
+                <div class="m-2">
                     <label for="nome" class="form-label">Estado</label>
                     <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.estado">
                 </div>
@@ -180,7 +184,7 @@
 
 
 
-<!-- Modal editar usuário -->
+<!-- Modal editar quadra -->
 <div class="modal fade" id="staticBackdrop" #ModalRefEditQuadra data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1">
     <div class="modal-dialog modal-l">
@@ -252,6 +256,11 @@
                                     <option selected value="true">Sim</option>
                                     <option value="false">Não</option>
                                 </select>
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Descrição</label>
+                                <input type="text" class="form-control" id="nome" [(ngModel)]="editedQuadra!.descricao">
                             </div>
                             <hr>
                             <div class="mb-3">

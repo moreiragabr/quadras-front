@@ -1,9 +1,9 @@
 .card-azul {
+  min-height: 416px;
   height: fit-content;
   width: 455px;
   background-color: #0554F2;
   padding-bottom: 10px;
-  justify-content: center;
   align-items: center;
   text-align: center;
   justify-items: center;
@@ -53,6 +53,14 @@
   font-size: 20px;
 }
 
+.font-size-22 {
+  font-size: 22px;
+}
+
+.font-size-32{
+  font-size: 32px;
+}
+
 .cor1 {
   text-align: center;
   color: #0554F2;
@@ -89,6 +97,24 @@
 }
 
 .botão:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.botão-2{
+  margin-top: 20px;
+  background-color: #F2E8D5;
+  border-radius: 5px;
+  height: fit-content;
+  width: 430px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.botão-2:hover{
   transform: translateY(-1px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }

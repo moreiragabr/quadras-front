@@ -6,6 +6,7 @@ export class Quadra{
     nome?:string;
     // nota?:string;
     valorHora?:number;
+    descricao?:string;
     partidaGravavel?:boolean;
     localizacao?:string;
     cidade?:string;

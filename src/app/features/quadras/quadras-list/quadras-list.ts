@@ -3,6 +3,7 @@ import { QuadraService } from '../../../core/service/quadraService/quadra-servic
 import { Quadra } from '../../../core/models/quadra';
 import { CapitalizePipe } from '../../../shared/pipes/capitalize-pipe';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/service/authService/auth-service';
 
 @Component({
   selector: 'app-quadras-list',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class QuadrasList {
   quadraService = inject(QuadraService);
+  authService = inject(AuthService);
   
   constructor(private router: Router) {}
 
