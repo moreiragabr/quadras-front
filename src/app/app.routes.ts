@@ -12,6 +12,7 @@ import { QuadrasListAdmin } from './features/admin/lists/quadras-list-admin/quad
 import { TimesListAdmin } from './features/admin/lists/times-list-admin/times-list-admin';
 import { Mapa } from './features/mapa/mapa';
 import { QuadrasDetail } from './features/quadras/quadras-detail/quadras-detail';
+import { QuadrasAdd } from './features/quadras/quadras-add/quadras-add';
 
 export const routes: Routes = [
     {
@@ -67,6 +68,12 @@ export const routes: Routes = [
                 loadComponent: () => TimesListAdmin,
                 data: { preload: true },
                 canActivate: [adminGuard, authGuard]
+            },
+            {
+                path: 'nova-quadra',
+                loadComponent: () => QuadrasAdd,
+                data: { preload: true },
+                canActivate: [authGuard]
             },
         ]
     },
