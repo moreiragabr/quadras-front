@@ -1,1 +1,42 @@
-<p>quadras-add works!</p>
+<div class="container-custom">
+    <div class="card-principal d-flex flex-column elemento-animado-3">
+        <div class="nome-tipo-quadra">
+            <div>
+                <h1 class="font-size-30 fonte">
+                    Adicione sua quadra!
+                </h1>
+            </div>
+        </div>
+        <div class="detalhes-quadra d-flex flex-row">
+            <div class="nome-descricao d-flex flex-column">
+                <div class="nome margin-bottom">
+                    <label for="nome" class="form-label fonte font-size-20">Nome</label>
+                    <input type="text" class="form-control back-color" id="nome" [(ngModel)]="newQuadra!.nome">
+                </div>
+                <div class="tipo margin-bottom">
+                    <label for="nome" class="form-label fonte font-size-20">Tipo de quadra</label>
+                    <select class="form-select back-color" [(ngModel)]="newQuadra!.tipoQuadra">
+                        <option selected value="POLIESPORTIVA">Poliesportiva</option>
+                        <option value="BASQUETE">Basquete</option>
+                        <option value="FUTSAL">Futsal</option>
+                        <option value="VOLEI">Volei</option>
+                        <option value="TENIS">Tênis</option>
+                        <option value="BEACHTENIS">Beach tênis</option>
+                        <option value="HANDEBOL">Handebol</option>
+                        <option value="AREIA">Quadra de areia</option>
+                        <option value="SOCIETY">Society</option>
+                    </select>
+                </div>
+                <div class="descrição">
+                    <label for="nome" class="form-label fonte font-size-20">Descrição</label>
+                    <textarea id="description" [(ngModel)]="newQuadra!.descricao" maxlength="500"
+                        class="description-field form-control back-color descricao"></textarea>
+                </div>
+                <div class="endereço">
+                    <label for="nome" class="form-label fonte font-size-20"></label>
+                    <input type="text" class="form-control back-color" id="nome" [(ngModel)]="newQuadra!.nome">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

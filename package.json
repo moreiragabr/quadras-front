@@ -26,6 +26,7 @@
     "@angular/compiler": "^20.2.2",
     "@angular/core": "^20.2.2",
     "@angular/forms": "^20.2.2",
+    "@angular/google-maps": "^20.2.13",
     "@angular/platform-browser": "^20.2.2",
     "@angular/router": "^20.2.2",
     "@bluehalo/ngx-leaflet": "^20.0.0",
