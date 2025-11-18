@@ -12,6 +12,10 @@ export class Quadra{
     cidade?:string;
     estado?:string;
     bairro?:string;
+    rua?:string;
+    numeroCasa?:string;
+    lot?:string;
+    lat?:string;
     tipoQuadra?:string;
     horarios?:Horario[];
     proprietario?:User;
