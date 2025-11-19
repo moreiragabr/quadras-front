@@ -8,14 +8,15 @@
             </div>
         </div>
         <div class="detalhes-quadra d-flex flex-row">
-            <div class="nome-descricao d-flex flex-column">
+            <div class="nome-descricao d-flex flex-column coluna-com-linha">
                 <div class="nome margin-bottom">
                     <label for="nome" class="form-label fonte font-size-17">Nome</label>
-                    <input type="text" class="form-control back-color" id="nome" [(ngModel)]="newQuadra!.nome">
+                    <input type="text" class="form-control back-color max-width" id="nome"
+                        [(ngModel)]="newQuadra!.nome">
                 </div>
                 <div class="tipo margin-bottom">
                     <label for="nome" class="form-label fonte font-size-17">Tipo de quadra</label>
-                    <select class="form-select back-color" [(ngModel)]="newQuadra!.tipoQuadra">
+                    <select class="form-select back-color max-width" [(ngModel)]="newQuadra!.tipoQuadra">
                         <option selected value="POLIESPORTIVA">Poliesportiva</option>
                         <option value="BASQUETE">Basquete</option>
                         <option value="FUTSAL">Futsal</option>
@@ -31,10 +32,69 @@
                     <label for="nome" class="form-label fonte font-size-17">Descrição</label>
                     <textarea id="description" [(ngModel)]="newQuadra!.descricao" maxlength="500"
                         class="description-field form-control back-color descricao"></textarea>
+                    <p class="fonte-2 cor-2 font-size-15">Máximo 500 carácteres</p>
                 </div>
-                <div class="endereço">
-                    <label for="nome" class="form-label fonte font-size-17"></label>
-                    <input type="text" class="form-control back-color" id="nome" [(ngModel)]="newQuadra!.nome">
+                <!-- <div class="endereço">
+                    <p class="fonte font-size-17">Endereço</p>
+                    <label for="nome" class="form-label fonte font-size-15">CEP</label>
+                    <input type="text" class="form-control back-color max-width" id="nome" [(ngModel)]="newQuadra!.nome">
+                </div> -->
+            </div>
+            <div class="estrutura coluna-com-linha">
+                <div class="d-flex flex-column">
+                    <p class="fonte font-size-20">Estrutura</p>
+                    <p class="fonte-2 cor-2 font-size-15">Selecione o que seu espaço tiver:</p>
+                </div>
+                <div class="d-flex flex-row">
+                    <label class=""><input type="checkbox" class="checkbox" [(ngModel)]="newQuadra!.haveWifi"></label>
+                    <p class="fonte-2 font-size-20 cor-2 align">Wi-fi</p>
+                </div>
+                <div class="d-flex flex-row">
+                    <label class=""><input type="checkbox" class="checkbox"
+                            [(ngModel)]="newQuadra!.haveEscolinha"></label>
+                    <p class="fonte-2 font-size-20 cor-2 align">Escolinha</p>
+                </div>
+                <div class="d-flex flex-row">
+                    <label class=""><input type="checkbox" class="checkbox"
+                            [(ngModel)]="newQuadra!.haveLanchonete"></label>
+                    <p class="fonte-2 font-size-20 cor-2 align">Lanchonete</p>
+                </div>
+                <div class="d-flex flex-row">
+                    <label class=""><input type="checkbox" class="checkbox" [(ngModel)]="newQuadra!.haveBar"></label>
+                    <p class="fonte-2 font-size-20 cor-2 align">Bar</p>
+                </div>
+                <div class="d-flex flex-row">
+                    <label class=""><input type="checkbox" class="checkbox"
+                            [(ngModel)]="newQuadra!.haveEstacionamento"></label>
+                    <p class="fonte-2 font-size-20 cor-2 align">Estacionamento</p>
+                </div>
+                <div class="d-flex flex-row">
+                    <label class=""><input type="checkbox" class="checkbox"
+                            [(ngModel)]="newQuadra!.haveVestiario"></label>
+                    <p class="fonte-2 font-size-20 cor-2 align">Vestiário</p>
+                </div>
+                <div class="d-flex flex-row">
+                    <label class=""><input type="checkbox" class="checkbox"
+                            [(ngModel)]="newQuadra!.haveChurrasqueira"></label>
+                    <p class="fonte-2 font-size-20 cor-2 align">Churrasqueira</p>
+                </div>
+                <div class="d-flex flex-row">
+                    <label class=""><input type="checkbox" class="checkbox" [(ngModel)]="newQuadra!.haveTv"></label>
+                    <p class="fonte-2 font-size-20 cor-2 align">TV</p>
+                </div>
+                <div class="d-flex flex-row">
+                    <label class=""><input type="checkbox" class="checkbox" [(ngModel)]="newQuadra!.haveOutros"></label>
+                    @if (newQuadra.haveOutros) {
+                    <textarea id="description" [(ngModel)]="newQuadra!.outrosDesc" maxlength="100"
+                        placeholder="Quais outros? Descreva o que mais a sua quadra tem a oferecer." class="description-field form-control back-color outros"></textarea>
+                    }@else{
+                    <p class="fonte-2 font-size-20 cor-2 align">Outros</p>}
+                </div>
+            </div>
+            <div class="quadras coluna-com-linha">
+                <div class="d-flex flex-column">
+                    <p class="fonte font-size-20">Quadras</p>
+                    <p class="fonte-2 cor-2 font-size-15">Selecione suas quadras:</p>
                 </div>
             </div>
         </div>

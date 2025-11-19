@@ -22,7 +22,21 @@ export class QuadrasAdd {
     partidaGravavel: false,
     estado: '',
     cidade: '',
-    bairro: ''
+    bairro: '',
+    rua: '',
+    numeroCasa: '',
+    lot:'',
+    lat:'',
+    haveWifi: false,
+    haveEscolinha: false,
+    haveLanchonete: false,
+    haveBar: false,
+    haveEstacionamento: false,
+    haveVestiario: false,
+    haveChurrasqueira: false,
+    haveTv: false,
+    haveOutros: false,
+    outrosDesc: '',
   };
 
 }

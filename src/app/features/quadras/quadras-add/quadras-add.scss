@@ -27,8 +27,26 @@
   margin-right: 25px;
 }
 
+.checkbox{
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+}
+
+.align{
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  gap: 10px;
+}
+
 .nome-tipo-quadra{
     margin-bottom: 20px;
+}
+
+.max-width{
+  max-width: 300px;
 }
 
 .foto{
@@ -94,6 +112,11 @@
 }
 
 .descricao{
-  width: 300px;
+  width: 400px;
+  height: 100px;
+}
+
+.outros{
+  width: 200px;
   height: 100px;
 }
