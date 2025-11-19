@@ -86,7 +86,8 @@
                     <label class=""><input type="checkbox" class="checkbox" [(ngModel)]="newQuadra!.haveOutros"></label>
                     @if (newQuadra.haveOutros) {
                     <textarea id="description" [(ngModel)]="newQuadra!.outrosDesc" maxlength="100"
-                        placeholder="Quais outros? Descreva o que mais a sua quadra tem a oferecer." class="description-field form-control back-color outros"></textarea>
+                        placeholder="Quais outros? Descreva o que mais a sua quadra tem a oferecer."
+                        class="description-field form-control back-color outros"></textarea>
                     }@else{
                     <p class="fonte-2 font-size-20 cor-2 align">Outros</p>}
                 </div>
@@ -96,6 +97,7 @@
                     <p class="fonte font-size-20">Quadras</p>
                     <p class="fonte-2 cor-2 font-size-15">Selecione suas quadras:</p>
                 </div>
+                <app-item-selector (itensChange)="onItensChange($event)"></app-item-selector>
             </div>
         </div>
     </div>
