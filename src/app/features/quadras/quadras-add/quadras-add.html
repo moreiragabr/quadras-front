@@ -99,6 +99,8 @@
                 </div>
                 <app-item-selector (itensChange)="onItensChange($event)"></app-item-selector>
             </div>
+            <app-operating-hours (schedulesChanged)="onSchedulesReceived($event)" ></app-operating-hours>
+            <button (click)="nextStep()">teste</button>
         </div>
     </div>
 </div>

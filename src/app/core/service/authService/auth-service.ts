@@ -47,6 +47,21 @@ export class AuthService {
     }
   }
 
+  getCurrentUserObject(): User | null {
+    const userString = localStorage.getItem("currentUser");
+    
+    if (userString) {
+      try {
+        // Converte a string JSON de volta para o objeto User
+        return JSON.parse(userString) as User;
+      } catch (e) {
+        console.error("AuthService: Erro ao desserializar o objeto de usuário:", e);
+        return null;
+      }
+    }
+    return null;
+  }
+
   login(loginRequest: { email: string, senha: string }): Observable<User> {
     return this.http.post<User>(this.API + "login", loginRequest);
   }

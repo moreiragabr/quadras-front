@@ -4,10 +4,13 @@ import { QuadraService } from '../../../core/service/quadraService/quadra-servic
 import { FormsModule } from '@angular/forms';
 import { ItemSelectorComponent } from '../../item-seletor/item-seletor';
 import { CampoSelecionado } from '../../../core/models/campo';
+import { OperatingHoursComponent } from '../../horario-funcionamento/horario-funcionamento';
+import { CampoFinal } from '../../../core/models/campoFinal';
+import { User } from '../../../core/models/user';
 
 @Component({
   selector: 'app-quadras-add',
-  imports: [FormsModule, ItemSelectorComponent],
+  imports: [FormsModule, ItemSelectorComponent, OperatingHoursComponent],
   templateUrl: './quadras-add.html',
   styleUrl: './quadras-add.scss'
 })
@@ -18,7 +21,7 @@ export class QuadrasAdd {
   newQuadra = {
     nome: '',
     tipoQuadra: '',
-    proprietario: localStorage.getItem("currentUser"),
+    proprietario: this.authService.getCurrentUserObject(),
     descricao: '',
     valorHora: 0,
     partidaGravavel: false,
@@ -39,14 +42,44 @@ export class QuadrasAdd {
     haveTv: false,
     haveOutros: false,
     outrosDesc: '',
+    horariosDeFuncionamento: [] as any[],
+    campos: [] as any[]
   };
 
   itensSelecionados: CampoSelecionado[] = [];
+
+  onSchedulesReceived(schedulesData: any[]) {
+    this.newQuadra.horariosDeFuncionamento = schedulesData;
+    console.log('Dados de Horários recebidos no Componente Pai (X):', schedulesData);
+  }
 
   onItensChange(itens: CampoSelecionado[]): void {
     this.itensSelecionados = itens;
     console.log('Itens atualizados:', itens);
   }
 
+  nextStep() {
+    this.newQuadra.campos.length = 0;
+    let sequentialId = 0;
 
+    for (const item of this.itensSelecionados) {
+      const nomeBase = item.nome;
+      const quantidade = item.quantidade;
+
+      for (let i = 1; i <= quantidade; i++) {
+        const nomeUnico = `${nomeBase} ${i}`;
+
+        const novaQuadraFinal: CampoFinal = {
+          id: sequentialId,
+          nome: nomeUnico,
+        };
+
+        this.newQuadra.campos.push(novaQuadraFinal);
+        sequentialId++;
+      }
+    }
+    console.log(this.newQuadra);
+  }
 }
+
+

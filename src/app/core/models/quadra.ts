@@ -1,4 +1,6 @@
+import { Campo } from "./campo";
 import { Horario } from "./horario";
+import { HorarioDia } from "./horarioDia";
 import { User } from "./user";
 
 export class Quadra {
@@ -29,4 +31,6 @@ export class Quadra {
     haveTv?: boolean;
     haveOutros?: boolean;
     outrosDesc?: string;
+    horariosDeFuncionamento?:HorarioDia[];
+    campos?:Campo[];
 }
