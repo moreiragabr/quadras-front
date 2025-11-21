@@ -13,6 +13,7 @@ import { TimesListAdmin } from './features/admin/lists/times-list-admin/times-li
 import { Mapa } from './features/mapa/mapa';
 import { QuadrasDetail } from './features/quadras/quadras-detail/quadras-detail';
 import { QuadrasAdd } from './features/quadras/quadras-add/quadras-add';
+import { QuadrasAdd2 } from './features/quadras/quadras-add/quadras-add-2/quadras-add-2';
 
 export const routes: Routes = [
     {
@@ -72,6 +73,12 @@ export const routes: Routes = [
             {
                 path: 'nova-quadra',
                 loadComponent: () => QuadrasAdd,
+                data: { preload: true },
+                canActivate: [authGuard]
+            },
+            {
+                path: 'nova-quadra-2',
+                loadComponent: () => QuadrasAdd2,
                 data: { preload: true },
                 canActivate: [authGuard]
             },

@@ -10,7 +10,6 @@ export class Quadra {
     valorHora?: number;
     descricao?: string;
     partidaGravavel?: boolean;
-    localizacao?: string;
     cidade?: string;
     estado?: string;
     bairro?: string;
@@ -19,7 +18,6 @@ export class Quadra {
     lot?: string;
     lat?: string;
     tipoQuadra?: string;
-    horarios?: Horario[];
     proprietario?: User;
     haveWifi?: boolean;
     haveEscolinha?: boolean;

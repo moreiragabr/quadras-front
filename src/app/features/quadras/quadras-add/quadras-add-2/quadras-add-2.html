@@ -1,0 +1,15 @@
+<div class="container-custom">
+    <div class="card-principal d-flex flex-column elemento-animado-3">
+        <div class="nome-tipo-quadra">
+            <div>
+                <h1 class="font-size-30 fonte">
+                    Adicione sua quadra!
+                </h1>
+            </div>
+        </div>
+        <div class="detalhes-quadra d-flex flex-row">
+            <app-address-input (addressChanged)="onAddressReceived($event)"></app-address-input>
+        </div>
+    </div>
+    <button (click)="nextStep()">bora</button>
+</div>

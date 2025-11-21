@@ -13,4 +13,5 @@ export class Endereco{
     ddd?:string;
     siafi?:string;
     erro?:false;
+    numeroCasa?:string;
 }

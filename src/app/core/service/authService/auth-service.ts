@@ -47,7 +47,7 @@ export class AuthService {
     }
   }
 
-  getCurrentUserObject(): User | null {
+  getCurrentUserObject(): User | undefined {
     const userString = localStorage.getItem("currentUser");
     
     if (userString) {
@@ -56,10 +56,10 @@ export class AuthService {
         return JSON.parse(userString) as User;
       } catch (e) {
         console.error("AuthService: Erro ao desserializar o objeto de usuário:", e);
-        return null;
+        return undefined;
       }
     }
-    return null;
+    return undefined;
   }
 
   login(loginRequest: { email: string, senha: string }): Observable<User> {

@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Campo, CampoSelecionado } from '../../core/models/campo';
+import { Campo, CampoSelecionado } from '../../../../core/models/campo';
 
 @Component({
   selector: 'app-item-selector',

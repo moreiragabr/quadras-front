@@ -2,11 +2,14 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../core/service/authService/auth-service';
 import { QuadraService } from '../../../core/service/quadraService/quadra-service';
 import { FormsModule } from '@angular/forms';
-import { ItemSelectorComponent } from '../../item-seletor/item-seletor';
 import { CampoSelecionado } from '../../../core/models/campo';
-import { OperatingHoursComponent } from '../../horario-funcionamento/horario-funcionamento';
+import { OperatingHoursComponent } from './horario-funcionamento/horario-funcionamento';
 import { CampoFinal } from '../../../core/models/campoFinal';
 import { User } from '../../../core/models/user';
+import { ItemSelectorComponent } from './item-seletor/item-seletor';
+import { QuadraFormState, QuadraRegistrationService } from '../../../core/service/quadraRegistrationService/quadra-registration-service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-quadras-add',
@@ -17,34 +20,39 @@ import { User } from '../../../core/models/user';
 export class QuadrasAdd {
   quadraService = inject(QuadraService);
   authService = inject(AuthService);
+  stateService = inject(QuadraRegistrationService);
+  router = inject(Router);
 
-  newQuadra = {
-    nome: '',
-    tipoQuadra: '',
-    proprietario: this.authService.getCurrentUserObject(),
-    descricao: '',
-    valorHora: 0,
-    partidaGravavel: false,
-    estado: '',
-    cidade: '',
-    bairro: '',
-    rua: '',
-    numeroCasa: '',
-    lot: '',
-    lat: '',
-    haveWifi: false,
-    haveEscolinha: false,
-    haveLanchonete: false,
-    haveBar: false,
-    haveEstacionamento: false,
-    haveVestiario: false,
-    haveChurrasqueira: false,
-    haveTv: false,
-    haveOutros: false,
-    outrosDesc: '',
-    horariosDeFuncionamento: [] as any[],
-    campos: [] as any[]
-  };
+  newQuadra: Partial<QuadraFormState> = this.stateService.getState();
+
+
+  // newQuadra = {
+  //   nome: '',
+  //   tipoQuadra: '',
+  //   proprietario: this.authService.getCurrentUserObject(),
+  //   descricao: '',
+  //   valorHora: 0,
+  //   partidaGravavel: false,
+  //   estado: '',
+  //   cidade: '',
+  //   bairro: '',
+  //   rua: '',
+  //   numeroCasa: '',
+  //   lot: '',
+  //   lat: '',
+  //   haveWifi: false,
+  //   haveEscolinha: false,
+  //   haveLanchonete: false,
+  //   haveBar: false,
+  //   haveEstacionamento: false,
+  //   haveVestiario: false,
+  //   haveChurrasqueira: false,
+  //   haveTv: false,
+  //   haveOutros: false,
+  //   outrosDesc: '',
+  //   horariosDeFuncionamento: [] as any[],
+  //   campos: [] as any[]
+  // };
 
   itensSelecionados: CampoSelecionado[] = [];
 
@@ -59,7 +67,11 @@ export class QuadrasAdd {
   }
 
   nextStep() {
-    this.newQuadra.campos.length = 0;
+    if (!this.newQuadra.campos) {
+      this.newQuadra.campos = [];
+    } else {
+      this.newQuadra.campos.length = 0;
+    }
     let sequentialId = 0;
 
     for (const item of this.itensSelecionados) {
@@ -78,7 +90,31 @@ export class QuadrasAdd {
         sequentialId++;
       }
     }
-    console.log(this.newQuadra);
+
+    const partialData = {
+      nome: this.newQuadra.nome,
+      tipoQuadra: this.newQuadra.tipoQuadra,
+      proprietario: this.authService.getCurrentUserObject(),
+      descricao: this.newQuadra.descricao,
+      haveWifi: this.newQuadra.haveWifi,
+      haveEscolinha: this.newQuadra.haveEscolinha,
+      haveLanchonete: this.newQuadra.haveLanchonete,
+      haveBar: this.newQuadra.haveBar,
+      haveEstacionamento: this.newQuadra.haveEstacionamento,
+      haveVestiario: this.newQuadra.haveVestiario,
+      haveChurrasqueira: this.newQuadra.haveChurrasqueira,
+      haveTv: this.newQuadra.haveTv,
+      haveOutros: this.newQuadra.haveOutros,
+      outrosDesc: this.newQuadra.outrosDesc,
+      horariosDeFuncionamento: this.newQuadra.horariosDeFuncionamento,
+      campos: this.newQuadra.campos
+    };
+
+    this.stateService.updateState(partialData);
+
+    console.log(partialData);
+  
+    this.router.navigate(['nova-quadra-2']);
   }
 }
 

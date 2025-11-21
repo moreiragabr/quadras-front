@@ -31,9 +31,9 @@ export class QuadrasListAdmin {
     nome: '',
     valorHora: 0,
     partidaGravavel: false,
-    localizacao: '',
+    // localizacao: '',
     tipoQuadra: '',
-    horarios: [],
+    // horarios: [],
   };
 
   listaTimes!: Time[];
