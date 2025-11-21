@@ -1,40 +1,35 @@
-<div class="address-container" [formGroup]="form">
+<div class="address-container coluna-com-linha" [formGroup]="form">
   <h3 class="fonte-2 cor-2">Localização</h3>
-  
+
   <div class="form-group">
     <label class="fonte-2 cor-2" for="cep">CEP (Somente números)</label>
-    <input 
-      id="cep" 
-      type="text" 
-      formControlName="cep" 
-      placeholder="00000000" 
-      maxlength="8">
-      </div>
+    <input id="cep" type="text" formControlName="cep" placeholder="00000000" maxlength="8" class="back-color">
+  </div>
 
   <div class="address-grid">
     <div class="form-group">
       <label class="fonte-2 cor-2">Rua / Logradouro</label>
-      <input type="text" formControlName="rua" readonly class="readonly-input">
+      <input type="text" formControlName="rua" readonly class="readonly-input back-color">
     </div>
 
     <div class="form-group">
       <label class="fonte-2 cor-2">Número</label>
-      <input type="number" formControlName="numeroCasa">
+      <input type="number" formControlName="numeroCasa" class="back-color">
     </div>
 
     <div class="form-group">
       <label class="fonte-2 cor-2">Bairro</label>
-      <input type="text" formControlName="bairro" readonly class="readonly-input">
+      <input type="text" formControlName="bairro" readonly class="readonly-input back-color">
     </div>
 
     <div class="form-group">
       <label class="fonte-2 cor-2">Cidade</label>
-      <input type="text" formControlName="cidade" readonly class="readonly-input">
+      <input type="text" formControlName="cidade" readonly class="readonly-input back-color">
     </div>
 
     <div class="form-group sm">
       <label class="fonte-2 cor-2">UF</label>
-      <input type="text" formControlName="estado" readonly class="readonly-input">
+      <input type="text" formControlName="estado" readonly class="readonly-input back-color">
     </div>
 
   </div>

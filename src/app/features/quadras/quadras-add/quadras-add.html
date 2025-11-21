@@ -92,15 +92,16 @@
                     <p class="fonte-2 font-size-20 cor-2 align">Outros</p>}
                 </div>
             </div>
-            <div class="quadras coluna-com-linha">
+            <div class="quadras">
                 <div class="d-flex flex-column">
                     <p class="fonte font-size-20">Quadras</p>
                     <p class="fonte-2 cor-2 font-size-15">Selecione suas quadras:</p>
                 </div>
                 <app-item-selector (itensChange)="onItensChange($event)"></app-item-selector>
             </div>
-            <app-operating-hours (schedulesChanged)="onSchedulesReceived($event)" ></app-operating-hours>
-            <button (click)="nextStep()">teste</button>
+            <div class="d-flex centro">
+                <div class="botão fonte-3 cor" (click)="nextStep()">Continuar</div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-    <div class="days-list" formArrayName="schedules">
+    <div class="days-list coluna-com-linha" formArrayName="schedules">
         <p class="fonte font-size-18">Horário de funcionamento</p>
         @for (control of schedules.controls; track $index) {
         <div [formGroupName]="$index" class="day-row" [class.closed]="!control.get('isOpen')?.value">

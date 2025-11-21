@@ -41,9 +41,32 @@
   gap: 10px;
 }
 
+.botão {
+  background-color: #F2E8D5;
+  border-radius: 5px;
+  height: 35px;
+  width: 190px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.botão:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+.centro{
+  margin-left: auto;
+  align-items:flex-end;
+}
 .nome-tipo-quadra{
     margin-bottom: 20px;
 }
+
 
 .max-width{
   max-width: 300px;

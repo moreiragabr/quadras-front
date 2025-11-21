@@ -3,7 +3,7 @@ import { AuthService } from '../../../core/service/authService/auth-service';
 import { QuadraService } from '../../../core/service/quadraService/quadra-service';
 import { FormsModule } from '@angular/forms';
 import { CampoSelecionado } from '../../../core/models/campo';
-import { OperatingHoursComponent } from './horario-funcionamento/horario-funcionamento';
+import { OperatingHoursComponent } from './quadras-add-2/horario-funcionamento/horario-funcionamento';
 import { CampoFinal } from '../../../core/models/campoFinal';
 import { User } from '../../../core/models/user';
 import { ItemSelectorComponent } from './item-seletor/item-seletor';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quadras-add',
-  imports: [FormsModule, ItemSelectorComponent, OperatingHoursComponent],
+  imports: [FormsModule, ItemSelectorComponent],
   templateUrl: './quadras-add.html',
   styleUrl: './quadras-add.scss'
 })
@@ -25,41 +25,7 @@ export class QuadrasAdd {
 
   newQuadra: Partial<QuadraFormState> = this.stateService.getState();
 
-
-  // newQuadra = {
-  //   nome: '',
-  //   tipoQuadra: '',
-  //   proprietario: this.authService.getCurrentUserObject(),
-  //   descricao: '',
-  //   valorHora: 0,
-  //   partidaGravavel: false,
-  //   estado: '',
-  //   cidade: '',
-  //   bairro: '',
-  //   rua: '',
-  //   numeroCasa: '',
-  //   lot: '',
-  //   lat: '',
-  //   haveWifi: false,
-  //   haveEscolinha: false,
-  //   haveLanchonete: false,
-  //   haveBar: false,
-  //   haveEstacionamento: false,
-  //   haveVestiario: false,
-  //   haveChurrasqueira: false,
-  //   haveTv: false,
-  //   haveOutros: false,
-  //   outrosDesc: '',
-  //   horariosDeFuncionamento: [] as any[],
-  //   campos: [] as any[]
-  // };
-
   itensSelecionados: CampoSelecionado[] = [];
-
-  onSchedulesReceived(schedulesData: any[]) {
-    this.newQuadra.horariosDeFuncionamento = schedulesData;
-    console.log('Dados de Horários recebidos no Componente Pai (X):', schedulesData);
-  }
 
   onItensChange(itens: CampoSelecionado[]): void {
     this.itensSelecionados = itens;
@@ -106,7 +72,6 @@ export class QuadrasAdd {
       haveTv: this.newQuadra.haveTv,
       haveOutros: this.newQuadra.haveOutros,
       outrosDesc: this.newQuadra.outrosDesc,
-      horariosDeFuncionamento: this.newQuadra.horariosDeFuncionamento,
       campos: this.newQuadra.campos
     };
 
