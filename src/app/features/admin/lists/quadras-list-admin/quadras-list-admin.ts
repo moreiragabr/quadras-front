@@ -30,7 +30,7 @@ export class QuadrasListAdmin {
     id: 1,
     nome: '',
     valorHora: 0,
-    partidaGravavel: false,
+    // partidaGravavel: false,
     // localizacao: '',
     tipoQuadra: '',
     // horarios: [],

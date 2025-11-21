@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Campo } from '../../models/campo';
-import { Horario } from '../../models/horario';
+// import { Horario } from '../../models/horario';
 import { User } from '../../models/user';
 import { HorarioDia } from '../../models/horarioDia';
 
@@ -9,7 +9,7 @@ export interface QuadraFormState {
     // nota?:string;
     valorHora?: number;
     descricao?: string;
-    partidaGravavel?: boolean;
+    // partidaGravavel?: boolean;
     localizacao?: string;
     cidade?: string;
     estado?: string;

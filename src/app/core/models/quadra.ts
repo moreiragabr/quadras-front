@@ -9,7 +9,7 @@ export class Quadra {
     // nota?:string;
     valorHora?: number;
     descricao?: string;
-    partidaGravavel?: boolean;
+    // partidaGravavel?: boolean;
     cidade?: string;
     estado?: string;
     bairro?: string;

@@ -63,13 +63,13 @@
                                 <p><strong>Proprietário:</strong> {{selectedQuadra.proprietario?.nome}}</p>
                                 <p><strong>Tipo de esporte:</strong> {{selectedQuadra.tipoQuadra}}</p>
                                 <p><strong>Valor por hora:</strong> {{selectedQuadra.valorHora}}</p>
-                                <p><strong>Partida gravável:</strong>
+                                <!-- <p><strong>Partida gravável:</strong>
                                     @if(selectedQuadra.partidaGravavel){
                                     Sim
                                     }@else {
                                     Não
                                     }
-                                </p>
+                                </p> -->
                                 <button type="button" class="btn botao-editar m-1"><span
                                         class="material-symbols-outlined" (click)="openModalEditQuadra(selectedQuadra)">
                                         edit
@@ -144,13 +144,13 @@
                     <label for="nome" class="form-label">Valor-hora</label>
                     <input type="number" class="form-control" id="nome" [(ngModel)]="newQuadra!.valorHora">
                 </div>
-                <div class="m-2">
+                <!-- <div class="m-2">
                     <label for="nome" class="form-label">Partidas graváveis?</label>
                     <select class="form-select" [(ngModel)]="newQuadra!.partidaGravavel">
                         <option selected value="true">Sim</option>
                         <option value="false">Não</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="m-2">
                     <label for="nome" class="form-label">Descrição</label>
                     <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.descricao">
@@ -250,14 +250,14 @@
                                 <input type="numb" class="form-control form-custom" id="nome"
                                     [(ngModel)]="editedQuadra!.valorHora">
                             </div>
-                            <hr>
+                            <!-- <hr>
                             <div class="mb-3">
                                 <label for="nome" class="form-label">Partidas graváveis?</label>
                                 <select class="form-select" [(ngModel)]="editedQuadra!.partidaGravavel">
                                     <option selected value="true">Sim</option>
                                     <option value="false">Não</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <hr>
                             <div class="mb-3">
                                 <label for="nome" class="form-label">Descrição</label>
