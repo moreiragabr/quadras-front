@@ -48,8 +48,8 @@ export class QuadrasAdd {
         const nomeUnico = `${nomeBase} ${i}`;
 
         const novaQuadraFinal: CampoFinal = {
-          id: sequentialId,
-          nome: nomeUnico,
+          identificador: sequentialId,
+          nome: nomeUnico
         };
 
         this.newQuadra.campos.push(novaQuadraFinal);
@@ -78,7 +78,7 @@ export class QuadrasAdd {
     this.stateService.updateState(partialData);
 
     console.log(partialData);
-  
+
     this.router.navigate(['nova-quadra-2']);
   }
 }

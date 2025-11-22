@@ -13,15 +13,15 @@ export class ItemSelectorComponent {
   @Output() itensChange = new EventEmitter<CampoSelecionado[]>();
 
   itensDisponiveis: Campo[] = [
-    { id: 1, nome: 'Society', },
-    { id: 2, nome: 'Futsal', },
-    { id: 3, nome: 'Vôlei', },
-    { id: 4, nome: 'Tênis' },
-    { id: 5, nome: 'Handebol', },
-    { id: 6, nome: 'Areia', },
-    { id: 7, nome: 'Beachtênis', },
-    { id: 8, nome: 'Futebol' },
-    { id: 9, nome: 'Basquete'}
+    { identificador: 1, nome: 'Society', },
+    { identificador: 2, nome: 'Futsal', },
+    { identificador: 3, nome: 'Vôlei', },
+    { identificador: 4, nome: 'Tênis' },
+    { identificador: 5, nome: 'Handebol', },
+    { identificador: 6, nome: 'Areia', },
+    { identificador: 7, nome: 'Beachtênis', },
+    { identificador: 8, nome: 'Futebol' },
+    { identificador: 9, nome: 'Basquete'}
   ];
 
   itensSelecionados: CampoSelecionado[] = [];

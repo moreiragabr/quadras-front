@@ -26,19 +26,78 @@
                     Estrutura
                 </h3>
                 <div class="d-flex flex-column">
-
+                    @if (quadraEscolhida.haveWifi == true) {
+                    <div class="d-flex flex-row centralizar structure-item">
+                        <img src="../../../../assets/images/icons/wifi-icon.png" alt="">
+                        <p class="fonte-2 cor-2 font-size-17 centralizar">Wi-fi</p>
+                    </div>
+                    }
+                    @if (quadraEscolhida.haveBar == true) {
+                    <div class="d-flex flex-row centralizar structure-item">
+                        <img src="../../../../assets/images/icons/cerveja-icon.png" alt="">
+                        <p class="fonte-2 cor-2 font-size-17 centralizar">Bar</p>
+                    </div>
+                    }
+                    @if (quadraEscolhida.haveLanchonete == true) {
+                    <div class="d-flex flex-row centralizar structure-item">
+                        <img src="../../../../assets/images/icons/restaurante-icon.png" alt="">
+                        <p class="fonte-2 cor-2 font-size-17 centralizar">Lanchonete</p>
+                    </div>
+                    }
+                    @if (quadraEscolhida.haveChurrasqueira == true) {
+                    <div class="d-flex flex-row centralizar structure-item">
+                        <img src="../../../../assets/images/icons/churrasco-icon.png" alt="">
+                        <p class="fonte-2 cor-2 font-size-17 centralizar">Churrasqueira</p>
+                    </div>
+                    }
+                    @if (quadraEscolhida.haveEscolinha == true) {
+                    <div class="d-flex flex-row centralizar structure-item">
+                        <img src="../../../../assets/images/icons/escolinha-icon.png" alt="">
+                        <p class="fonte-2 cor-2 font-size-17 centralizar">Escolinha</p>
+                    </div>
+                    }
+                    @if (quadraEscolhida.haveEstacionamento == true) {
+                    <div class="d-flex flex-row centralizar structure-item">
+                        <img src="../../../../assets/images/icons/carro-icon.png" alt="">
+                        <p class="fonte-2 cor-2 font-size-17 centralizar">Estacionamento</p>
+                    </div>
+                    }
+                    @if (quadraEscolhida.haveTv == true) {
+                    <div class="d-flex flex-row centralizar structure-item">
+                        <img src="../../../../assets/images/icons/tv-icon.png" alt="">
+                        <p class="fonte-2 cor-2 font-size-17 centralizar">Tv</p>
+                    </div>
+                    }
+                    @if (quadraEscolhida.haveVestiario == true) {
+                    <div class="d-flex flex-row centralizar structure-item">
+                        <img src="../../../../assets/images/icons/vestiario-icon.png" alt="">
+                        <p class="fonte-2 cor-2 font-size-17 centralizar">Vestiário</p>
+                    </div>
+                    }
+                    @if (quadraEscolhida.haveOutros == true) {
+                    <div class="d-flex flex-row centralizar structure-item">
+                        <img src="../../../../assets/images/icons/outros-icon.png" alt="">
+                        <div class="d-flex flex-column">
+                            <p class="fonte-2 cor-2 font-size-17 centralizar">Outros:</p>
+                            <p class="fonte-2 cor-2 font-size-10 centralizar">{{quadraEscolhida.outrosDesc}}</p>
+                        </div>
+                    </div>
+                    }
                 </div>
             </div>
             <div class="quadras d-flex flex-column coluna-com-linha">
                 <h3 class="fonte font-size-20 cor2">
                     Quadras
                 </h3>
+                <div class="d-flex flex-column">
+                    
+                </div>
             </div>
             <div class="horario-endereço-botão d-flex flex-column">
                 <h3 class="fonte font-size-20 cor2">
                     Horário de funcionamento
                 </h3>
-                
+
             </div>
         </div>
     </div>

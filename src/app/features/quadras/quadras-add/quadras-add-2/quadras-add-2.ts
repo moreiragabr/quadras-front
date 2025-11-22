@@ -52,6 +52,7 @@ export class QuadrasAdd2 {
             bairro: this.addressData.bairro,
             rua: this.addressData.rua,
             numeroCasa: this.addressData.numeroCasa,
+            cep: this.addressData.cep,
             lot: coords.lon.toString(),
             lat: coords.lat.toString(),
             valorHora: this.addressData.valorHora,
@@ -69,7 +70,7 @@ export class QuadrasAdd2 {
                 icon: 'success',
               })
               
-              this.router.navigate(['/quadras', dados.id]);
+              // this.router.navigate(['/quadras', dados.id]);
             },
             error: (erro) => {
               Swal.fire({

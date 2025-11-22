@@ -3,10 +3,10 @@
         <select id="itemSelect" [(ngModel)]="itemSelecionado" (change)="adicionarItem()"
             class="item-select form-select back-color">
             <option value=""></option>
-            @for (item of itensDisponiveis; track item.id) {
-            <option [value]="item.nome" [disabled]="itemJaAdicionado(item.id)">
+            @for (item of itensDisponiveis; track item.identificador) {
+            <option [value]="item.nome" [disabled]="itemJaAdicionado(item.identificador)">
                 {{ item.nome }}
-                @if (itemJaAdicionado(item.id)) {
+                @if (itemJaAdicionado(item.identificador)) {
                 (Já adicionado)
                 }
             </option>

@@ -1,4 +1,7 @@
+import { Quadra } from "./quadra";
+
 export interface CampoFinal {
-  id: number;
   nome: string;
+  identificador: number;
+  quadra?: Quadra;
 }

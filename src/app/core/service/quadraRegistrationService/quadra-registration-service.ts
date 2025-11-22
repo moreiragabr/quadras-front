@@ -15,6 +15,7 @@ export interface QuadraFormState {
     estado?: string;
     bairro?: string;
     rua?: string;
+    cep?: string;
     numeroCasa?: string;
     lot?: string;
     lat?: string;
@@ -43,7 +44,7 @@ export class QuadraRegistrationService {
     nome: '',
     valorHora: 0,
     descricao:'',
-    estado: '', cidade: '', bairro: '', rua: '', numeroCasa: '', lot: '', lat: '',
+    estado: '', cidade: '', bairro: '', rua: '', numeroCasa: '', lot: '', lat: '', cep:'',
     tipoQuadra: '',
     proprietario: undefined,
     haveBar: false,
