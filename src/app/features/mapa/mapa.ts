@@ -1,20 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import * as L from 'leaflet';
+import { QuadraService } from '../../core/service/quadraService/quadra-service';
+import { Quadra } from '../../core/models/quadra';
+import { Router, RouterLink } from '@angular/router';
+import { CapitalizePipe } from '../../shared/pipes/capitalize-pipe';
 
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.html',
-  styleUrls: ['./mapa.scss']
+  styleUrls: ['./mapa.scss'],
 })
 export class Mapa implements OnInit {
 
+  quadraService = inject(QuadraService);
+  router = inject(Router); // 2. Injeta o Router
+  quadras!: Quadra[];
   private mapa!: L.Map;
   private centroid: L.LatLngExpression = [-25.546944, -54.586389]; // Foz do Iguaçu
   private userMarker: L.Marker | null = null;
 
+
   private initMap(): void {
 
-    // Configuração dos ícones
+    // Configuração dos ícones (necessário para que os marcadores padrão funcionem)
     delete (L.Icon.Default.prototype as any)._getIconUrl;
     L.Icon.Default.mergeOptions({
       iconRetinaUrl: 'assets/marker-icon-2x.png',
@@ -41,29 +49,95 @@ export class Mapa implements OnInit {
 
     tiles.addTo(this.mapa);
 
-    // Adiciona botão de localização
     this.adicionarBotaoLocalizacao();
 
     setTimeout(() => {
       this.mapa.invalidateSize();
     }, 100);
+  }
 
-    L.marker([-25.546944, -54.586389]).addTo(this.mapa)
-    .bindPopup('A pretty CSS popup.<br> Easily customizable.')
-    .openPopup();
+
+  private adicionarQuadrasNoMapa(quadras: Quadra[]): void {
+    if (!this.mapa) {
+      console.error('O mapa não foi inicializado.');
+      return;
+    }
+
+    // Cria um ícone personalizado para as quadras (opcional, mas recomendado para diferenciar)
+    const courtIcon = L.icon({
+      iconUrl: 'assets/images/icons/location-icon.png', // Exemplo de ícone de quadra
+      iconSize: [32, 32],      // tamanho do ícone
+      iconAnchor: [16, 32],    // ponto de âncora do ícone
+      popupAnchor: [0, -32]  // ponto onde o popup deve abrir
+    });
+
+    quadras.forEach(quadra => {
+      const { lat, lot, nome, rua, numeroCasa, bairro, valorHora, tipoQuadra } = quadra;
+
+
+      const latitude = Number(lat);
+      const longitude = Number(lot);
+
+      if (isNaN(latitude) || isNaN(longitude)) {
+        console.error(`Coordenadas inválidas para a quadra: ${nome}`);
+        return;
+      }
+      // Cria o conteúdo HTML do popup
+      const popupContent = `
+        <div class="popup-quadra centralizar-text">
+          <p class="fonte-3 cor font-size-25 margin-0">${nome}</p>
+          <p class="fonte-2 cor font-size-18 margin-0 custom-p">${tipoQuadra}</p>
+          <p class="fonte-2 cor font-size-15 margin-0 custom-p">${rua} - ${numeroCasa}</p>
+          <p class="fonte-2 cor font-size-15 margin-0">Valor-hora médio: R$ ${valorHora ? valorHora.toFixed(2) : 'N/A'}</p>
+          <button id="detalhe-quadra-${quadra.id}" class="popup-link-detalhes fonte-3 cor font-size-17 margin-0 custom-b">Ver detalhes</button>
+        </div>
+      `;
+
+      // Cria o marcador e o adiciona ao mapa
+      const marker = L.marker([latitude, longitude], { icon: courtIcon })
+        .addTo(this.mapa)
+        .bindPopup(popupContent, {
+          maxWidth: 300,
+          closeButton: false
+        });
+
+      marker.on('popupopen', () => {
+        // Encontra o botão pelo ID único dentro do popup
+        const detailsButton = document.getElementById(`detalhe-quadra-${quadra.id}`);
+
+        if (detailsButton) {
+          // Usa o DomEvent do Leaflet para adicionar um listener de clique
+          L.DomEvent.on(detailsButton, 'click', (e) => {
+            // Previne a propagação do evento (para não fechar o popup inesperadamente)
+            L.DomEvent.stopPropagation(e);
+
+            // Navegação programática do Angular
+            this.router.navigate(['/quadras', quadra.id]);
+
+            // Opcional: fechar o popup após o clique
+            this.mapa.closePopup();
+          });
+        }
+      });
+    });
+  }
+
+  verInformacoes(quadraId: number): void {
+    this.router.navigate(['/quadras', quadraId]);
   }
 
   private adicionarBotaoLocalizacao(): void {
+
     const botaoLocalizacao = (L.control as any)({ position: 'bottomleft' });
 
     botaoLocalizacao.onAdd = () => {
-      const div = L.DomUtil.create('div', 'botao-localizacao');
+      const div = L.DomUtil.create('div', 'leaflet-bar botao-localizacao'); // Usando leaflet-bar para estilo padrão
       div.innerHTML = `
         <button class="btn-localizacao" title="Minha Localização">
           📍
         </button>
       `;
-      
+
       L.DomEvent.on(div, 'click', (e) => {
         L.DomEvent.stopPropagation(e);
         this.irParaMinhaLocalizacao();
@@ -77,7 +151,7 @@ export class Mapa implements OnInit {
 
   private irParaMinhaLocalizacao(): void {
     if (!navigator.geolocation) {
-      alert('Geolocalização não é suportada pelo seu navegador');
+      console.error('Geolocalização não é suportada pelo seu navegador');
       return;
     }
 
@@ -122,12 +196,12 @@ export class Mapa implements OnInit {
       (erro) => {
         // Erro na geolocalização
         console.error('Erro na geolocalização:', erro);
-        
+
         // Restaura ícone do botão
         if (botao) botao.innerHTML = '📍';
 
         let mensagem = 'Não foi possível obter sua localização. ';
-        
+
         switch (erro.code) {
           case erro.PERMISSION_DENIED:
             mensagem += 'Permissão negada pelo usuário.';
@@ -141,18 +215,22 @@ export class Mapa implements OnInit {
           default:
             mensagem += 'Erro desconhecido.';
         }
-        
-        alert(mensagem);
+
+        // Substituindo 'alert' conforme a regra. Em um app real, use um serviço de notificação.
+        // alert(mensagem); 
+        console.error(mensagem); // Apenas logando o erro
       },
       {
-        enableHighAccuracy: true,    // Tenta usar GPS
-        timeout: 10000,              // 10 segundos de timeout
-        maximumAge: 600000           // Cache de 10 minutos
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 600000
       }
     );
   }
 
-  // Opcional: Localização automática ao iniciar
+  /**
+   * Localização automática ao iniciar
+   */
   private localizacaoAutomatica(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -165,7 +243,6 @@ export class Mapa implements OnInit {
         },
         (erro) => {
           console.log('Localização automática falhou, usando Foz do Iguaçu');
-          // Mantém Foz do Iguaçu como fallback
         }
       );
     }
@@ -173,6 +250,18 @@ export class Mapa implements OnInit {
 
   ngOnInit(): void {
     this.initMap();
+
+    this.quadraService.findAll().subscribe({
+      next: (dados) => {
+        this.quadras = dados;
+        this.adicionarQuadrasNoMapa(this.quadras);
+      },
+      error: (erro) => {
+        console.error('Erro ao carregar os dados:', erro);
+      }
+    })
+
+
     setTimeout(() => this.localizacaoAutomatica(), 2000);
   }
 }

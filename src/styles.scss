@@ -45,6 +45,10 @@ body {
   color: #F2E8D5;
 }
 
+.margin-0{
+  margin: 0;
+}
+
 @keyframes slideInFromRight {
   0% {
     transform: translateX(20px);
@@ -109,4 +113,36 @@ body {
 
 .font-size-30 {
   font-size: 30px;
+}
+
+.botão-2:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.custom-p {
+  margin-bottom: 20px;
+}
+
+.centralizar-text {
+  align-items: center;
+  text-align: center;
+  justify-items: center;
+}
+
+.custom-b{
+  margin-top: 5px;
+  border-radius: 5px;
+  border-color: #0554F2;
+  border-width: 1px;
+  border-style: solid;
+  height: fit-content;
+  width: fit-content;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.custom-b:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }

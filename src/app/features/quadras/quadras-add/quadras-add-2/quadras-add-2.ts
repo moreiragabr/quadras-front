@@ -70,7 +70,7 @@ export class QuadrasAdd2 {
                 icon: 'success',
               })
               
-              // this.router.navigate(['/quadras', dados.id]);
+              this.router.navigate(['/quadras', dados.id]);
             },
             error: (erro) => {
               Swal.fire({

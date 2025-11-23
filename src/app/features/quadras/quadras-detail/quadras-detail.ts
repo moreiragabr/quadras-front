@@ -10,7 +10,7 @@ import { CapitalizePipe } from '../../../shared/pipes/capitalize-pipe';
   templateUrl: './quadras-detail.html',
   styleUrl: './quadras-detail.scss'
 })
-export class QuadrasDetail implements OnInit{
+export class QuadrasDetail implements OnInit {
 
   quadraService = inject(QuadraService);
 
@@ -18,20 +18,23 @@ export class QuadrasDetail implements OnInit{
 
   quadraEscolhida!: Quadra;
 
+  listaCampo?: String[];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
 
     console.log("a")
     this.quadraId = Number(this.route.snapshot.paramMap.get('id'));
-    
-      this.quadraService.findById(this.quadraId).subscribe({
+
+    this.quadraService.findById(this.quadraId).subscribe({
       next: (dados) => {
         this.quadraEscolhida = dados;
         console.log(this.quadraEscolhida);
+        this.listaCampo = this.getTiposDeCampoUnicos(this.quadraEscolhida.campos);
       },
       error: (erro) => {
         this.router.navigate(['/']);
@@ -40,5 +43,18 @@ export class QuadrasDetail implements OnInit{
     })
   }
 
+  getTiposDeCampoUnicos(campos: any[] | undefined): string[] {
+    if (!campos || campos.length === 0) {
+      return [];
+    }
 
+    const tiposProcessados = campos.map(campo => {
+      const nomeBase = campo.nome.replace(/\s\d+$/, '').trim();
+      return nomeBase.charAt(0).toUpperCase() + nomeBase.slice(1).toLowerCase(); 
+    });
+
+    const tiposUnicos = Array.from(new Set(tiposProcessados));
+
+    return tiposUnicos;
+  }
 }

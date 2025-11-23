@@ -58,7 +58,7 @@ export class QuadraRegistrationService {
     haveWifi: false,
     outrosDesc: '',
     horariosDeFuncionamento: [],
-    campos: [] as any[],
+    campos: [],
   };
 
   public quadraState = signal<QuadraFormState>(this.initialState);

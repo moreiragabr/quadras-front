@@ -35,9 +35,27 @@
   margin: 0 0 0 10px;
 }
 
+.centralizar-2{
+  align-items: center;
+  text-align: center;
+  // justify-content: center;
+  justify-items: center;
+  margin: 0;
+}
+
 .structure-item{
   margin-bottom: 10px;
 }
+
+.structure-item-2{
+  margin-bottom: 2px;
+}
+
+.structure-item-2 img{
+  object-fit: cover;
+  height: 25px;
+}
+
 
 .nome-tipo-quadra{
     margin-bottom: 20px;
@@ -95,4 +113,26 @@
 
 .cor2 {
   color: #F2E8D5;
+}
+
+.margin{
+  margin-top: 40px;
+}
+
+.margin-0{
+  margin: 0;
+}
+
+.botao-agendar{
+  margin-top: auto;
+  width: fit-content;
+  padding-right: 10px;
+  border-radius: 5px;
+  background-color: #F2E8D5;
+  cursor: pointer;
+}
+
+.botao-agendar:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }

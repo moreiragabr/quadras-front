@@ -89,15 +89,76 @@
                 <h3 class="fonte font-size-20 cor2">
                     Quadras
                 </h3>
-                <div class="d-flex flex-column">
-                    
+                <div class="d-flex flex-column ">
+                    @for (tipo of listaCampo; track tipo) {
+                    <div class="d-flex row-column centralizar structure-item">
+                        @if (tipo == "Society") {
+                        <img src="../../../../assets/images/icons/futsal-icon.png" alt="">
+                        }
+                        @if (tipo == "Futsal") {
+                        <img src="../../../../assets/images/icons/futsal-icon.png" alt="">
+                        }
+                        @if (tipo == "Vôlei") {
+                        <img src="../../../../assets/images/icons/volei-icon.png" alt="">
+                        }
+                        @if (tipo == "Tênis") {
+                        <img src="../../../../assets/images/icons/tenis-icon.png" alt="">
+                        }
+                        @if (tipo == "Handebol") {
+                        <img src="../../../../assets/images/icons/handebol-icon.png" alt="">
+                        }
+                        @if (tipo == "Areia") {
+                        <img src="../../../../assets/images/icons/volei-icon.png" alt="">
+                        }
+                        @if (tipo == "Beachtênis") {
+                        <img src="../../../../assets/images/icons/tenis-icon.png" alt="">
+                        }
+                        @if (tipo == "Futebol") {
+                        <img src="../../../../assets/images/icons/futebol-icon.png" alt="">
+                        }
+                        @if (tipo == "Basquete") {
+                        <img src="../../../../assets/images/icons/basquete-icon.png" alt="">
+                        }
+                        <p class="fonte-2 cor-2 font-size-17 centralizar">{{tipo}}</p>
+                    </div>
+                    }
                 </div>
             </div>
             <div class="horario-endereço-botão d-flex flex-column">
                 <h3 class="fonte font-size-20 cor2">
                     Horário de funcionamento
                 </h3>
+                <div class="d-flex flex-column ">
+                    @for (horario of quadraEscolhida.horariosDeFuncionamento; track horario.dayOfWeek) {
+                    <div class="d-flex flex-row centralizar-2 structure-item-2">
+                        <p class="fonte-2 cor-2 font-size-17 centralizar-2">{{horario.dayName}}</p>
+                        <img src="../../../../assets/images/icons/arrow-icon.png" alt="">
+                        @if (horario.isOpen) {
+                        <p class="fonte-2 cor-2 font-size-17 centralizar-2">{{ horario.openTime }} - {{
+                            horario.closeTime
+                            }}</p>
+                        } @else {
+                        <p class="fonte-2 cor-2 font-size-17 centralizar-2">Fechado</p>
+                        }
+                    </div>
+                    }
+                </div>
 
+                <h3 class="fonte font-size-20 cor2 margin">
+                    Endereço
+                </h3>
+                <div class="d-flex flex-column">
+                    <p class="fonte-2 cor-2 font-size-17 margin-0">{{quadraEscolhida.cidade}} -
+                        {{quadraEscolhida.estado}}</p>
+                    <p class="fonte-2 cor-2 font-size-17 margin-0">{{quadraEscolhida.bairro}}</p>
+                    <p class="fonte-2 cor-2 font-size-17 margin-0">{{quadraEscolhida.rua}} -
+                        {{quadraEscolhida.numeroCasa}}</p>
+                </div>
+
+                <div class="d-flex flex-row botao-agendar centralizar-2">
+                    <img src="../../../../assets/images/icons/calendario-icon.png" alt="">
+                    <p class="fonte-3 cor font-size-17 centralizar-2">AGENDAR HORÁRIO</p>
+                </div>
             </div>
         </div>
     </div>
