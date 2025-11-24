@@ -26,6 +26,7 @@ export class QuadrasAdd {
   newQuadra: Partial<QuadraFormState> = this.stateService.getState();
 
   itensSelecionados: CampoSelecionado[] = [];
+  proprietario?: any;
 
   onItensChange(itens: CampoSelecionado[]): void {
     this.itensSelecionados = itens;
@@ -57,10 +58,16 @@ export class QuadrasAdd {
       }
     }
 
+    if (this.authService.getCurrentUserValue() == null) {
+      this.proprietario = undefined;
+    }else{
+      this.proprietario = this.authService.getCurrentUserValue();
+    }
+
     const partialData = {
       nome: this.newQuadra.nome,
       tipoQuadra: this.newQuadra.tipoQuadra,
-      proprietario: this.authService.getCurrentUserObject(),
+      proprietario: this.proprietario,
       descricao: this.newQuadra.descricao,
       haveWifi: this.newQuadra.haveWifi,
       haveEscolinha: this.newQuadra.haveEscolinha,

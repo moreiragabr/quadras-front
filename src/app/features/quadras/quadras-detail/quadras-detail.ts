@@ -33,7 +33,6 @@ export class QuadrasDetail implements OnInit {
     this.quadraService.findById(this.quadraId).subscribe({
       next: (dados) => {
         this.quadraEscolhida = dados;
-        console.log(this.quadraEscolhida);
         this.listaCampo = this.getTiposDeCampoUnicos(this.quadraEscolhida.campos);
       },
       error: (erro) => {

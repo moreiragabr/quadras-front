@@ -73,10 +73,15 @@
 
 .texto{
     max-width: 400px;
+    overflow-wrap: break-word;
 }
 
 .estrutura{
     min-width: 15vw;
+}
+
+.texto-outros{
+  overflow-wrap: break-word;
 }
 
 .quadras{

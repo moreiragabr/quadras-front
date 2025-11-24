@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { Login } from './features/login/login';
+import { LoginComponent } from './features/login/login';
 import { Home } from './features/home/home';
 import { authGuard } from './core/guards/auth-guard';
 import { Structure } from './features/layout/structure/structure';
@@ -14,11 +14,13 @@ import { Mapa } from './features/mapa/mapa';
 import { QuadrasDetail } from './features/quadras/quadras-detail/quadras-detail';
 import { QuadrasAdd } from './features/quadras/quadras-add/quadras-add';
 import { QuadrasAdd2 } from './features/quadras/quadras-add/quadras-add-2/quadras-add-2';
+import { notAutGuardGuard } from './core/guards/not-aut-guard-guard';
 
 export const routes: Routes = [
     {
         path: 'login',
-        component: Login
+        component: LoginComponent,
+        canActivate: [notAutGuardGuard]
     },
     {
         path: '',

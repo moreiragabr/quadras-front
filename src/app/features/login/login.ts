@@ -1,59 +1,64 @@
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../core/service/authService/auth-service';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2'
 import { FormsModule } from '@angular/forms';
-
+import Swal from 'sweetalert2';
+import { AuthService } from '../../core/service/authService/auth-service';
+import { LoginRequest } from '../../core/models/loginRequest';
 
 @Component({
   selector: 'app-login',
+  standalone: true, // Certifique-se de que está marcado como standalone
   imports: [FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
-export class Login {
+export class LoginComponent { // Renomeado para LoginComponent por convenção
 
   authService = inject(AuthService);
   router = inject(Router);
-  errorMessage?: string;
-  loginRequest = { email: '', senha: '' };
+
+  // DTO de requisição tipado
+  loginRequest: LoginRequest = { email: '', senha: '' };
+
+  // Variável para armazenar mensagens de erro específicas
+  errorMessage: string | null = null;
 
   login() {
 
+    // 1. Validação básica
     if (!this.loginRequest.email || !this.loginRequest.senha) {
       Swal.fire({
         title: 'Insira todos os dados!',
         icon: 'warning',
-      })
+      });
       return;
     }
 
+    // 2. Chama o método login do Service
     this.authService.login(this.loginRequest).subscribe({
 
-      next: (user) => {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        if(user.tipoUsuario=="ADMIN"){
-          localStorage.setItem('currentUserAdmin', 'true');
-        }
-        this.authService.authenticate();
+      // Sucesso: O Service já salvou o token e atualizou o estado.
+      next: (response) => {
+
+        this.router.navigate(['/home']);
+
       },
 
-      error: (error) => {
-        if (error.status === 401) {
-          this.errorMessage = 'Email ou senha incorretos';
-        } else if (error.status === 403) {
-          this.errorMessage = 'Acesso negado. Verifique suas permissões.';
-        } else if (error.status === 0) {
-          this.errorMessage = 'Erro de conexão. Verifique se o servidor está rodando.';
-        } else {
-          this.errorMessage = 'Erro inesperado. Tente novamente.';
-        }
+      // Erro: O Service lança um 'Error' com a mensagem de falha.
+      error: (error: Error) => {
+        // Exibimos a mensagem de erro que veio do catchError do AuthService.
+        const msg = error.message;
+
+        // Exibe o erro usando SweetAlert
         Swal.fire({
-          title: this.errorMessage,
-          icon: 'warning',
-        })
+          title: 'Falha no Login',
+          text: msg || 'Ocorreu um erro desconhecido.',
+          icon: 'error',
+        });
+
+        // Limpa a mensagem de erro interna após a exibição
+        this.errorMessage = msg;
       }
     });
   }
-
 }

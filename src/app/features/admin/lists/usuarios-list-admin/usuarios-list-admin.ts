@@ -27,11 +27,7 @@ export class UsuariosListAdmin {
     id: 1,
     nome: '',
     email: '',
-    tipoUsuario: '',
-    senha: '',
-    horarios: [],
-    timesProprietarios: [],
-    times: [],
+    role: '',
     reservas: [],
     quadras: []
   };
@@ -41,11 +37,7 @@ export class UsuariosListAdmin {
   editedUser: any = {
     nome: '',
     email: '',
-    tipoUsuario: '',
-    senha: '',
-    horarios: [],
-    timesProprietarios: [],
-    times: [],
+    role: '',
     reservas: [],
     quadras: []
   };

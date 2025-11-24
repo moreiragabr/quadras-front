@@ -1,7 +1,6 @@
 <nav class="navbar navbar-expand-lg custom">
   <div class="container-fluid">
-    <a class="navbar-brand mb-0 h1 cor d-flex justify-content-center align-items-center"
-      routerLink="">Quadras</a>
+    <a class="navbar-brand mb-0 h1 cor d-flex justify-content-center align-items-center" routerLink="">Quadras</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -34,12 +33,12 @@
         </ul>
       </div>
       <ul class="navbar-nav">
-        @if(authService.isLogged()){
+        @if(currentUser$ | async; as usuario){
         <li class="nav-item">
           <div class="btn-group">
-            <button type="button" class="btn dropdown-toggle cor" data-bs-toggle="dropdown" data-bs-display="static"
+            <button type="button" class="btn  cor" data-bs-toggle="dropdown" data-bs-display="static"
               aria-expanded="false">
-              Usuário
+              {{usuario.nome | firstName}}
             </button>
             <ul class="dropdown-menu dropdown-menu-lg-end">
               <li><button class="dropdown-item" type="button">Perfil</button></li>
