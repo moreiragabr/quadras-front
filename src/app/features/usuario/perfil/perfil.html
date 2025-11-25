@@ -17,11 +17,27 @@
                 <div class="fonte-15 fonte-3 cor botao">Editar</div>
             </div>
         </div>
-        <div class="d-flex flex-column">
-            <!-- @for (quadra of listaCampo; track tipo) { -->
+        <div class="d-flex flex-column lista-quadras coluna-com-linha">
+            <div class="fonte font-size-20">Suas quadras</div>
+            @for (quadra of quadrasCadastradas; track quadra.id) {
+            <div class="d-flex flex-column card-quadra">
+                <div class="fonte font-size-20 m-b-10">{{quadra.nome}}</div>
+                <div class="fonte-2 font-size-20 cor-2 m-b-5">{{quadra.tipoQuadra | capitalize}}</div>
+                <div class="fonte-2 font-size-16 cor-2">{{quadra.rua}} - {{quadra.numeroCasa}}</div>
+                <div class="fonte-2 font-size-16 cor-2">{{quadra.cidade}} - {{quadra.estado}}</div>
+                <div class="d-flex flex-row botoes">
+                    <div class="d-flex botao-2 fonte-2 cor font-size-18" routerLink="/quadras/{{quadra.id}}">Ir para
+                        quadra</div>
+                    <div class="d-flex botao-2 fonte-2 cor font-size-18">Editar</div>
+                </div>
+            </div>
+            }
+            <div class="d-flex flex-column card-quadra">
+                <div class="d-flex botao-3 fonte-2 cor font-size-18" routerLink="/nova-quadra">Adicionar nova quadra</div>
+            </div>
         </div>
-        <div class="d-flex flex-column">
+    </div>
+    <div class="d-flex flex-column">
 
-        </div>
     </div>
 </div>

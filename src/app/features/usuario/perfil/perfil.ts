@@ -2,10 +2,13 @@ import { Component, inject, Inject } from '@angular/core';
 import { User } from '../../../core/models/user';
 import { AuthService } from '../../../core/service/authService/auth-service';
 import { UserService } from '../../../core/service/userService/user-service';
+import { Quadra } from '../../../core/models/quadra';
+import { RouterLink } from '@angular/router';
+import { CapitalizePipe } from '../../../shared/pipes/capitalize-pipe';
 
 @Component({
   selector: 'app-perfil',
-  imports: [],
+  imports: [RouterLink, CapitalizePipe],
   templateUrl: './perfil.html',
   styleUrl: './perfil.scss'
 })
@@ -15,6 +18,7 @@ export class Perfil {
   userService = inject(UserService);
 
   perfil: User | null = null;
+  quadrasCadastradas: Quadra[] = [];
 
   ngOnInit(): void {
     this.carregarMeuPerfil();
@@ -36,10 +40,17 @@ export class Perfil {
         next: (data) => {
           this.perfil = data;
           console.log(this.perfil);
+
+          if (this.perfil.quadras) {
+            this.quadrasCadastradas = this.perfil.quadras;
+          } else {
+            this.quadrasCadastradas = [];
+          }
         },
         error: (err) => {
           console.error("Erro ao carregar perfil:", err);
           this.perfil = null;
+          this.quadrasCadastradas = [];
         }
       });
     }

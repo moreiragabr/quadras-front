@@ -11,14 +11,16 @@
 
 .card-principal {
     background-color: #2B68E0;
-    height: calc(95vh - 100px);
+    min-height: calc(95vh - 100px);
+    height: fit-content;
     width: 90vw;
     border-radius: 10px;
     padding: 50px;
 }
 
 .detalhes-quadra{
-    height: calc(95vh - 100px - 50px - 90px)
+  height: fit-content;
+    min-height: calc(95vh - 100px - 50px - 90px)
 }
 
 .coluna-com-linha {
@@ -81,6 +83,8 @@
 }
 
 .texto-outros{
+  height: fit-content;
+  max-width: 10vw;
   overflow-wrap: break-word;
 }
 
