@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { AuthService } from '../../core/service/authService/auth-service';
-import { LoginRequest } from '../../core/models/loginRequest';
+import { AuthService } from '../../../core/service/authService/auth-service';
+import { LoginRequest } from '../../../core/models/loginRequest';
 
 @Component({
   selector: 'app-login',
   standalone: true, // Certifique-se de que está marcado como standalone
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })

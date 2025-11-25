@@ -25,6 +25,10 @@ export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
 
+  private isInitializedSubject = new BehaviorSubject<boolean>(false);
+  public isInitialized$ = this.isInitializedSubject.asObservable();
+
+
   constructor() {
     // IMPORTANTE: O construtor está vazio. A lógica de inicialização 
     // é movida para initializeSession() para quebrar o ciclo de dependência.
@@ -147,6 +151,7 @@ export class AuthService {
     if (!token) {
       // Sem token, sem login.
       this.currentUserSubject.next(null);
+      this.isInitializedSubject.next(true); // Se não há token, está pronto!
       return;
     }
 
@@ -177,6 +182,7 @@ export class AuthService {
         // Erro tratado no catchError, ou seja, deslogado.
         this.currentUserSubject.next(null);
       }
+      this.isInitializedSubject.next(true);
     });
   }
 }

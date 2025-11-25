@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './features/login/login';
+import { LoginComponent } from './features/usuario/login/login';
 import { Home } from './features/home/home';
 import { authGuard } from './core/guards/auth-guard';
 import { Structure } from './features/layout/structure/structure';
@@ -15,11 +15,18 @@ import { QuadrasDetail } from './features/quadras/quadras-detail/quadras-detail'
 import { QuadrasAdd } from './features/quadras/quadras-add/quadras-add';
 import { QuadrasAdd2 } from './features/quadras/quadras-add/quadras-add-2/quadras-add-2';
 import { notAutGuardGuard } from './core/guards/not-aut-guard-guard';
+import { Perfil } from './features/usuario/perfil/perfil';
+import { Registro } from './features/usuario/registro/registro';
 
 export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
+        canActivate: [notAutGuardGuard]
+    },
+    {
+        path: 'registrar',
+        component: Registro,
         canActivate: [notAutGuardGuard]
     },
     {
@@ -84,6 +91,12 @@ export const routes: Routes = [
                 data: { preload: true },
                 canActivate: [authGuard]
             },
+            {
+                path: 'perfil',
+                loadComponent: () => Perfil,
+                data: { preload: true },
+                canActivate: [authGuard]
+            }
         ]
     },
     {

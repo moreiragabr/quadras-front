@@ -45,7 +45,7 @@ export class QuadrasDetail implements OnInit {
   getTiposDeCampoUnicos(campos: any[] | undefined): string[] {
     if (!campos || campos.length === 0) {
       return [];
-    }
+    } 
 
     const tiposProcessados = campos.map(campo => {
       const nomeBase = campo.nome.replace(/\s\d+$/, '').trim();

@@ -4,11 +4,12 @@ import { AuthService } from '../service/authService/auth-service';
 
 export const adminGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
-  // const routes = inject(Router);
+  const routes = inject(Router);
 
   if(authService.isAdmin()){
     return true;
   }else{
+    routes.navigate(['/']);
     return false;
   }
 };

@@ -10,4 +10,12 @@ export class User {
     role!: string;
     reservas?: Reserva[];
     quadras?: Quadra[];
+    cep? : string;
+    cidade?: string;
+    estado?: string;
+    bairro?: string;
+    rua?: string;
+    numeroCasa?: string;
+    lot?: string;
+    lat?: string;
 }
