@@ -17,6 +17,7 @@ import { QuadrasAdd2 } from './features/quadras/quadras-add/quadras-add-2/quadra
 import { notAutGuardGuard } from './core/guards/not-aut-guard-guard';
 import { Perfil } from './features/usuario/perfil/perfil';
 import { Registro } from './features/usuario/registro/registro';
+import { AgendamentoComponent } from './features/reserva/reserva-component/reserva-component';
 
 export const routes: Routes = [
     {
@@ -96,6 +97,10 @@ export const routes: Routes = [
                 loadComponent: () => Perfil,
                 data: { preload: true },
                 canActivate: [authGuard]
+            },
+            {
+                path: 'teste/:id',
+                loadComponent: ()=> AgendamentoComponent
             }
         ]
     },

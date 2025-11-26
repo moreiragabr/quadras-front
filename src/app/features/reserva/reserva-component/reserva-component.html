@@ -1,0 +1,76 @@
+    <div class="container mx-auto p-6 bg-gray-50 min-h-screen">
+      <h1 class="text-3xl font-bold text-green-700 mb-6 border-b-2 pb-2">
+        Agendar Quadra (ID: {{ quadraId }})
+      </h1>
+
+      <!-- 1. SELETOR DE CAMPO (Adaptado do seu HTML, usando Tailwind para visual) -->
+      <section class="mb-8 p-6 bg-white rounded-lg shadow-xl">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">1. Selecione o Campo</h2>
+        
+        <!-- Seu HTML de seleção de campo é mais complexo, aqui está a versão simplificada para este exemplo -->
+        @if (campos.length > 0) {
+          <select 
+            [(ngModel)]="campoSelecionadoId" 
+            (ngModelChange)="onCampoChange($event)"
+            class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg w-full">
+            <option [ngValue]="null" disabled>-- Escolha um campo --</option>
+            @for (campo of campos; track campo.id) {
+              <option [ngValue]="campo.id">
+                {{ campo.nome }} (Identificador: {{ campo.identificador }})
+              </option>
+            }
+          </select>
+        } @else {
+          <p class="text-red-500">Nenhum campo encontrado para esta quadra.</p>
+        }
+      </section>
+
+      <!-- 2. SELETOR DE DATA -->
+      @if (campoSelecionadoId) {
+        <section class="mb-8 p-6 bg-white rounded-lg shadow-xl">
+          <h2 class="text-xl font-semibold text-gray-700 mb-4">2. Selecione o Dia</h2>
+          <input type="date" 
+                 [ngModel]="dataSelecionada" 
+                 (ngModelChange)="onDataChange($event)"
+                 [min]="hoje"
+                 class="p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-lg w-full md:w-auto">
+        </section>
+      }
+
+      <!-- 3. SLOTS DISPONÍVEIS -->
+      @if (campoSelecionadoId && dataSelecionada) {
+        <section class="p-6 bg-white rounded-lg shadow-xl">
+          <h2 class="text-xl font-semibold text-gray-700 mb-4">3. Horários Disponíveis em {{ dataSelecionada | date:'shortDate' }}</h2>
+          
+          @if (slots.length > 0) {
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-96 overflow-y-auto p-2">
+              @for (slot of slots; track slot.horaInicio) {
+                <button 
+                  (click)="reservar(slot)"
+                  [disabled]="!slot.disponivel"
+                  class="p-4 rounded-lg font-bold transition duration-300 shadow-md text-center"
+                  [ngClass]="{
+                    'bg-green-500 hover:bg-green-600 text-white cursor-pointer': slot.disponivel,
+                    'bg-red-200 text-red-600 cursor-not-allowed': !slot.disponivel
+                  }">
+                  {{ slot.horaInicio.substring(0, 5) }} - {{ slot.horaFim.substring(0, 5) }}
+                  @if (!slot.disponivel) {
+                    <span class="block text-xs font-normal">Reservado</span>
+                  }
+                </button>
+              }
+            </div>
+          } @else {
+              <p class="text-gray-500 italic">Nenhum slot disponível para este campo e dia, ou a quadra está fechada.</p>
+          }
+        </section>
+      }
+
+      <!-- Mensagens de Feedback -->
+      @if (mensagemSucesso) {
+        <div class="mt-6 p-4 bg-lime-100 text-lime-700 rounded-lg font-medium">{{ mensagemSucesso }}</div>
+      }
+      @if (mensagemErro) {
+        <div class="mt-6 p-4 bg-red-100 text-red-700 rounded-lg font-medium">{{ mensagemErro }}</div>
+      }
+    </div>
