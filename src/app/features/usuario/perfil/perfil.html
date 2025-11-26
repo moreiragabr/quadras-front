@@ -33,9 +33,29 @@
             </div>
             }
             <div class="d-flex flex-column card-quadra">
-                <div class="d-flex botao-3 fonte-2 cor font-size-18" routerLink="/nova-quadra">Adicionar nova quadra</div>
+                <div class="d-flex botao-3 fonte-2 cor font-size-18" routerLink="/nova-quadra">Adicionar nova quadra
+                </div>
             </div>
         </div>
+        @if (reservasAgendadas.length > 0) {
+        <div class="d-flex flex-column lista-quadras">
+            <div class="fonte font-size-20">Suas reservas</div>
+            @for (reserva of reservasAgendadas; track reserva.id) {
+            <div class="d-flex flex-column card-quadra">
+                <div class="fonte font-size-20 m-b-10">{{reserva.campo?.}}</div>
+                <div class="fonte-2 font-size-20 cor-2 m-b-5">{{reserva.campo?.nome}}</div>
+                <div class="fonte-2 font-size-16 cor-2">{{formatarData(reserva.inicioReserva)}}</div>
+                <div class="fonte-2 font-size-16 cor-2">{{formatarHora(reserva.inicioReserva)}}</div>
+                <div class="d-flex flex-row botoes">
+                    <div class="d-flex botao-2 fonte-2 cor font-size-18" routerLink="/quadras/{{reserva.campo?.quadra?.id}}">Ir para
+                        quadra</div>
+                    <div class="d-flex botao-2 fonte-2 cor font-size-18">Editar</div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+
     </div>
     <div class="d-flex flex-column">
 

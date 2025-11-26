@@ -24,6 +24,10 @@ export class QuadraService {
     return this.http.get<Quadra>(this.API + "/" + id);
   }
 
+  findByCampoId(id:number): Observable<Quadra>{
+    return this.http.get<Quadra>(this.API + "/campo/" + id)
+  }
+
   save(quadra: any): Observable<Quadra> {
     return this.http.post<Quadra>(this.API, quadra);
   }
