@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { QuadraService } from '../../../core/service/quadraService/quadra-service';
 import { Quadra } from '../../../core/models/quadra';
 import { CapitalizePipe } from '../../../shared/pipes/capitalize-pipe';
 
 @Component({
   selector: 'app-quadras-detail',
-  imports: [CapitalizePipe],
+  imports: [CapitalizePipe, RouterLink],
   templateUrl: './quadras-detail.html',
   styleUrl: './quadras-detail.scss'
 })

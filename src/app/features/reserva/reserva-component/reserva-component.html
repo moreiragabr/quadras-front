@@ -1,76 +1,167 @@
-    <div class="container mx-auto p-6 bg-gray-50 min-h-screen">
-      <h1 class="text-3xl font-bold text-green-700 mb-6 border-b-2 pb-2">
-        Agendar Quadra (ID: {{ quadraId }})
-      </h1>
-
-      <!-- 1. SELETOR DE CAMPO (Adaptado do seu HTML, usando Tailwind para visual) -->
-      <section class="mb-8 p-6 bg-white rounded-lg shadow-xl">
-        <h2 class="text-xl font-semibold text-gray-700 mb-4">1. Selecione o Campo</h2>
-        
-        <!-- Seu HTML de seleção de campo é mais complexo, aqui está a versão simplificada para este exemplo -->
-        @if (campos.length > 0) {
-          <select 
-            [(ngModel)]="campoSelecionadoId" 
-            (ngModelChange)="onCampoChange($event)"
-            class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg w-full">
-            <option [ngValue]="null" disabled>-- Escolha um campo --</option>
-            @for (campo of campos; track campo.id) {
-              <option [ngValue]="campo.id">
-                {{ campo.nome }} (Identificador: {{ campo.identificador }})
-              </option>
-            }
-          </select>
-        } @else {
-          <p class="text-red-500">Nenhum campo encontrado para esta quadra.</p>
+<div class="container-custom">
+  <div class="card-principal d-flex flex-column elemento-animado-3">
+    <div class="d-flex flex-column centralizar">
+      <div class="fonte font-size-30">Agende seu horário</div>
+    </div>
+    <div class="centralizar">
+      <div class="fonte font-size-20 centralizar m-t elemento-animado-3">1. Escolha o campo</div>
+      @if (campos.length > 0) {
+      <select [(ngModel)]="campoSelecionadoId" (ngModelChange)="onCampoChange($event)"
+        [disabled]="!authService.isLoggedIn()" class="form-select seletor m-t-2 back-color elemento-animado-3">
+        <option [ngValue]="null" disabled></option>
+        @for (campo of campos; track campo.id) {
+        <option [ngValue]="campo.id">
+          {{ campo.nome }}
+        </option>
         }
-      </section>
-
-      <!-- 2. SELETOR DE DATA -->
-      @if (campoSelecionadoId) {
-        <section class="mb-8 p-6 bg-white rounded-lg shadow-xl">
-          <h2 class="text-xl font-semibold text-gray-700 mb-4">2. Selecione o Dia</h2>
-          <input type="date" 
-                 [ngModel]="dataSelecionada" 
-                 (ngModelChange)="onDataChange($event)"
-                 [min]="hoje"
-                 class="p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-lg w-full md:w-auto">
-        </section>
-      }
-
-      <!-- 3. SLOTS DISPONÍVEIS -->
-      @if (campoSelecionadoId && dataSelecionada) {
-        <section class="p-6 bg-white rounded-lg shadow-xl">
-          <h2 class="text-xl font-semibold text-gray-700 mb-4">3. Horários Disponíveis em {{ dataSelecionada | date:'shortDate' }}</h2>
-          
-          @if (slots.length > 0) {
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-96 overflow-y-auto p-2">
-              @for (slot of slots; track slot.horaInicio) {
-                <button 
-                  (click)="reservar(slot)"
-                  [disabled]="!slot.disponivel"
-                  class="p-4 rounded-lg font-bold transition duration-300 shadow-md text-center"
-                  [ngClass]="{
-                    'bg-green-500 hover:bg-green-600 text-white cursor-pointer': slot.disponivel,
-                    'bg-red-200 text-red-600 cursor-not-allowed': !slot.disponivel
-                  }">
-                  {{ slot.horaInicio.substring(0, 5) }} - {{ slot.horaFim.substring(0, 5) }}
-                  @if (!slot.disponivel) {
-                    <span class="block text-xs font-normal">Reservado</span>
-                  }
-                </button>
-              }
-            </div>
-          } @else {
-              <p class="text-gray-500 italic">Nenhum slot disponível para este campo e dia, ou a quadra está fechada.</p>
-          }
-        </section>
-      }
-
-      <!-- Mensagens de Feedback -->
-      @if (mensagemSucesso) {
-        <div class="mt-6 p-4 bg-lime-100 text-lime-700 rounded-lg font-medium">{{ mensagemSucesso }}</div>
-      }
-      @if (mensagemErro) {
-        <div class="mt-6 p-4 bg-red-100 text-red-700 rounded-lg font-medium">{{ mensagemErro }}</div>
+      </select>
       }
     </div>
+    @if (campoSelecionadoId) {
+    <div class="centralizar">
+      <div class="fonte font-size-20 centralizar m-t elemento-animado-3">2. Escolha o dia</div>
+      <input type="date" [ngModel]="dataSelecionada" (ngModelChange)="onDataChange($event)" [min]="hoje"
+        [disabled]="!authService.isLoggedIn()" class="form-control seletor m-t-2 elemento-animado-3 back-color">
+    </div>
+    }
+    <div class="centralizar">
+      @if (campoSelecionadoId && dataSelecionada) {
+      <div class="fonte font-size-20 centralizar m-t elemento-animado-3">3. Escolha o horário</div>
+      @if (slots.length > 0) {
+      <div class="slots-grid elemento-animado-3 centralizar m-t-2">
+        @for (slot of slots; track slot.horaInicio) {
+        <button (click)="selecionarSlot(slot)" [disabled]="!slot.disponivel || !authService.isLoggedIn()"
+          class="btn-slot fonte-2 font-size-15" [ngClass]="{
+              'slot-disponivel': slot.disponivel && authService.isLoggedIn() && slot !== slotSelecionado,
+              'slot-selecionado': slot === slotSelecionado && slot.disponivel && authService.isLoggedIn(),
+              'slot-deslogado': !authService.isLoggedIn(),
+              'slot-reservado': !slot.disponivel && authService.isLoggedIn()
+            }">
+          {{ slot.horaInicio.substring(0, 5) }} - {{ slot.horaFim.substring(0, 5) }}
+          @if (!slot.disponivel) {
+          <span class="slot-info">Reservado</span>
+          }
+          @if (!authService.isLoggedIn()) {
+          <span class="slot-info">Fazer Login</span>
+          }
+        </button>
+        }
+      </div>
+      } @else {
+      <p class="fonte m-t elemento-animado-3">Nenhum horário disponível para este campo e dia</p>
+      }
+      }
+
+    </div>
+    <div class="centralizar">
+      @if (slotSelecionado) {
+        <button (click)="confirmarReserva()" [disabled]="!authService.isLoggedIn()"
+          class="btn-confirmar-agendamento m-t elemento-animado-3 fonte font-size-20">
+          CONFIRMAR AGENDAMENTO
+        </button>
+      }
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div class="">
+<div class="container-custom">
+  <div class="card-principal d-flex flex-column elemento-animado-3">
+    <div class="d-flex flex-column centralizar">
+      <div class="fonte font-size-30">Agende seu horário</div>
+    </div>
+
+>
+    @if (!authService.isLoggedIn()) {
+      <div class="alerta-login m-t-2">
+        ⚠️ Você precisa estar logado para realizar uma reserva.
+        <button (click)="navigateToLogin()" class="btn-login-alerta">
+          Fazer Login
+        </button>
+      </div>
+    }
+
+
+    <div class="centralizar" [class.opacity-50]="!authService.isLoggedIn()">
+      <div class="fonte font-size-20 centralizar m-t">1. Escolha o campo</div>
+      @if (campos.length > 0) {
+      <select [(ngModel)]="campoSelecionadoId" (ngModelChange)="onCampoChange($event)"
+        [disabled]="!authService.isLoggedIn()" class="form-select seletor m-t-2">
+        <option [ngValue]="null" disabled>-- Selecione --</option>
+        @for (campo of campos; track campo.id) {
+        <option [ngValue]="campo.id">
+          {{ campo.nome }} (Identificador: {{ campo.identificador }})
+        </option>
+        }
+      </select>
+      }
+    </div>
+
+
+    @if (campoSelecionadoId) {
+    <div class="centralizar" [class.opacity-50]="!authService.isLoggedIn()">
+      <div class="fonte font-size-20 centralizar m-t elemento-animado-3">2. Escolha o dia</div>
+      <input type="date" [ngModel]="dataSelecionada" (ngModelChange)="onDataChange($event)" [min]="hoje"
+        [disabled]="!authService.isLoggedIn()" class="form-control seletor m-t-2 elemento-animado-3">
+    </div>
+    }
+
+
+    <div>
+      @if (campoSelecionadoId && dataSelecionada) {
+      <div class="fonte font-size-20 centralizar m-t elemento-animado-3">3. Escolha o horário</div>
+        @if (slots.length > 0) {
+        <div class="slots-grid elemento-animado-3">
+          @for (slot of slots; track slot.horaInicio) {
+          <button (click)="selecionarSlot(slot)" [disabled]="!slot.disponivel || !authService.isLoggedIn()" 
+            class="btn-slot"
+            [ngClass]="{
+              'slot-disponivel': slot.disponivel && authService.isLoggedIn() && slot !== slotSelecionado,
+              'slot-selecionado': slot === slotSelecionado && slot.disponivel && authService.isLoggedIn(),
+              'slot-deslogado': !authService.isLoggedIn(),
+              'slot-reservado': !slot.disponivel && authService.isLoggedIn()
+            }">
+            {{ slot.horaInicio.substring(0, 5) }} - {{ slot.horaFim.substring(0, 5) }}
+            @if (!slot.disponivel) {
+            <span class="slot-info">Reservado</span>
+            }
+            @if (!authService.isLoggedIn()) {
+            <span class="slot-info">Fazer Login</span>
+            }
+          </button>
+          }
+        </div>
+        } @else {
+        <p class="mensagem-info m-t-2">Nenhum slot disponível para este campo e dia.</p>
+        }
+      }
+    </div>
+
+
+    @if (slotSelecionado) {
+      <div class="confirmacao-reserva m-t-4 elemento-animado-3">
+        <p class="confirmacao-texto">
+          Confirmar para: 
+          <strong>{{ dataSelecionada | date:'shortDate' }} às {{ slotSelecionado.horaInicio.substring(0, 5) }}</strong>
+        </p>
+        <button 
+          (click)="confirmarReserva()"
+          [disabled]="!authService.isLoggedIn()"
+          class="btn-confirmar-agendamento m-t-2">
+          CONFIRMAR AGENDAMENTO
+        </button>
+      </div>
+    }
+
+
+    @if (mensagemSucesso) {
+      <div class="mensagem-sucesso m-t-4">{{ mensagemSucesso }}</div>
+    }
+    @if (mensagemErro) {
+      <div class="mensagem-erro m-t-4">{{ mensagemErro }}</div>
+    }
+  </div>
+<!-- </div> -->

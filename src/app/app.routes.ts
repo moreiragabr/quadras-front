@@ -23,12 +23,12 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        canActivate: [notAutGuardGuard]
+        canActivate: [notAutGuardGuard],
     },
     {
         path: 'registrar',
         component: Registro,
-        canActivate: [notAutGuardGuard]
+        canActivate: [notAutGuardGuard],
     },
     {
         path: '',
@@ -39,12 +39,12 @@ export const routes: Routes = [
                 path: 'times',
                 loadComponent: () => TimesList,
                 data: { preload: true },
-                canActivate: [authGuard]
+                canActivate: [authGuard],
             },
             {
                 path: 'mapa',
                 loadComponent: () => Mapa,
-                data: { preload: true }
+                data: { preload: true },
             },
             {
                 path: 'quadras',
@@ -60,52 +60,54 @@ export const routes: Routes = [
                 path: 'admin-dashboard',
                 loadComponent: () => AdminDashboard,
                 data: { preload: true },
-                canActivate: [adminGuard, authGuard]
+                canActivate: [adminGuard, authGuard],
             },
             {
                 path: 'usuarios-admin-list',
                 loadComponent: () => UsuariosListAdmin,
                 data: { preload: true },
-                canActivate: [adminGuard, authGuard]
+                canActivate: [adminGuard, authGuard],
             },
             {
                 path: 'quadras-admin-list',
                 loadComponent: () => QuadrasListAdmin,
                 data: { preload: true },
-                canActivate: [adminGuard, authGuard]
+                canActivate: [adminGuard, authGuard],
             },
             {
                 path: 'times-admin-list',
                 loadComponent: () => TimesListAdmin,
                 data: { preload: true },
-                canActivate: [adminGuard, authGuard]
+                canActivate: [adminGuard, authGuard],
             },
             {
                 path: 'nova-quadra',
                 loadComponent: () => QuadrasAdd,
                 data: { preload: true },
-                canActivate: [authGuard]
+                canActivate: [authGuard],
             },
             {
                 path: 'nova-quadra-2',
                 loadComponent: () => QuadrasAdd2,
                 data: { preload: true },
-                canActivate: [authGuard]
+                canActivate: [authGuard],
             },
             {
                 path: 'perfil',
                 loadComponent: () => Perfil,
                 data: { preload: true },
-                canActivate: [authGuard]
+                canActivate: [authGuard],
             },
             {
-                path: 'teste/:id',
-                loadComponent: ()=> AgendamentoComponent
-            }
-        ]
+                path: 'agendar/:id',
+                loadComponent: () => AgendamentoComponent,
+                data: { preload: true },
+                canActivate: [authGuard],
+            },
+        ],
     },
     {
         path: '**',
-        redirectTo: ''
-    }
+        redirectTo: '',
+    },
 ];
