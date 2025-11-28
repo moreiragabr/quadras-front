@@ -1,0 +1,111 @@
+.cor {
+    background-color: #ffffff00;
+    align-content: center;
+}
+
+.custom-container {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #0554F2;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.border-radius {
+    border-radius: 10px !important;
+
+}
+
+.border-color {
+    border-color: #0554F2 !important;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden; // Esconde as bordas internas que ultrapassam o radius
+}
+
+.botao-editar {
+    background-color: #d6f2054c;
+    height: 3em;
+    width: 3em;
+}
+
+.botao-excluir {
+    background-color: #f205054c;
+    height: 3em;
+    width: 3em;
+}
+
+.botao-salvar {
+    background-color: #05f2114c;
+    height: 3em;
+    width: 3em;
+}
+
+.botao-aumentar {
+    background-color: #0534f24c;
+    height: 3em;
+    width: 3em;
+}
+
+.botao-adicionar {
+    background-color: #70f2054c;
+    height: 3em;
+    width: 3em;
+}
+
+.botao-cancelar {
+    background-color: #f205054c;
+    height: 3em;
+    width: 3em;
+}
+
+.icone {
+    font-size: 1.6em;
+}
+
+.fonte-preta {
+    color: black;
+}
+
+.modal-xl-custom {
+    max-width: 90%;
+    /* Ocupa 90% da largura da tela */
+}
+
+.modal-body-scrollable {
+    max-height: 480px;
+    /* Ou o valor que você preferir */
+    overflow-y: hidden;
+    /* Adiciona scroll vertical se o conteúdo exceder a altura */
+}
+
+.custom {
+    margin-left: 0%;
+    margin-right: 0%;
+    flex-wrap: nowrap;
+    width: 80%;
+}
+
+.custom-sm {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.form-custom {
+    width: 20em;
+}
+
+// .aumentar-tamanho{
+//     width: 10000px;
+// }
+
+.mini-botao-adicionar {
+    color: #05f211;
+    cursor: pointer;
+}
+
+.mini-botao-deletar {
+    color: #f20505;
+    cursor: pointer;
+}

@@ -1,12 +1,14 @@
 {
   "name": "quadras-fron",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "npm run config && ng serve",
+    "build": "npm run config && ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "config": "ts-node src/environments/set-env.ts"
   },
   "prettier": {
     "printWidth": 100,
@@ -22,27 +24,39 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^20.2.0",
-    "@angular/compiler": "^20.2.0",
-    "@angular/core": "^20.2.0",
-    "@angular/forms": "^20.2.0",
-    "@angular/platform-browser": "^20.2.0",
-    "@angular/router": "^20.2.0",
+    "@angular/common": "^20.2.2",
+    "@angular/compiler": "^20.2.2",
+    "@angular/core": "^20.2.2",
+    "@angular/forms": "^20.2.2",
+    "@angular/google-maps": "^20.2.13",
+    "@angular/platform-browser": "^20.2.2",
+    "@angular/router": "^20.2.2",
+    "@bluehalo/ngx-leaflet": "^20.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^19.0.1",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8",
+    "dotenv": "^17.2.3",
+    "leaflet": "^1.9.4",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.23.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular/build": "^20.2.2",
     "@angular/cli": "^20.2.2",
-    "@angular/compiler-cli": "^20.2.0",
+    "@angular/compiler-cli": "^20.2.2",
+    "@angular/localize": "^20.2.2",
     "@types/jasmine": "~5.1.0",
+    "@types/leaflet": "^1.9.21",
+    "@types/node": "^24.10.1",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ts-node": "^10.9.2",
     "typescript": "~5.9.2"
   }
 }

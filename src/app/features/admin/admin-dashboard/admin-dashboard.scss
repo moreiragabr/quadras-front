@@ -1,0 +1,32 @@
+.icone-usuario {
+    font-size: 18em;
+}
+
+.icone-estadio {
+    font-size: 14em;
+    height: 1.29em;
+    align-content: center;
+}
+
+.icone-bandeira {
+    font-size: 16em;
+    height: 1.13em;
+    align-content: center;
+}
+
+.card {
+    background-color: #056CF2;
+    color: #F2E8D5;
+    position: relative;
+    /* Importante para o efeito de elevação */
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #079AF2;
+        transform: translateY(-5px);
+        /* Move o elemento 1px para cima */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        /* Adiciona sombra para dar profundidade */
+    }
+}

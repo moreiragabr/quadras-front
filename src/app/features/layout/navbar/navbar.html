@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg custom">
+  <div class="container-fluid">
+    <a class="navbar-brand mb-0 h1 cor d-flex justify-content-center align-items-center" routerLink="">Quadras</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <div class="mx-auto">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+              <div class="cor fonte-size-16">Início</div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/mapa" routerLinkActive="active">
+              <div class="cor fonte-size-16">Mapa</div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/quadras" routerLinkActive="active">
+              <div class="cor fonte-size-16">Lista</div>
+            </a>
+          </li>
+          @if(authService.isAdmin()){
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin-dashboard" routerLinkActive="active">
+              <div class="cor fonte-size-16">admin</div>
+            </a>
+          </li>
+          }
+        </ul>
+      </div>
+      <ul class="navbar-nav">
+        @if(currentUser$ | async; as usuario){
+        <li class="nav-item">
+          <div class="btn-group">
+            <button type="button" class="btn  cor" data-bs-toggle="dropdown" data-bs-display="static"
+              aria-expanded="false">
+              {{usuario.nome | firstName}}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+              <li><button class="dropdown-item" type="button" routerLink="/perfil">Perfil</button></li>
+              <li><button class="dropdown-item" type="button" (click)="sair()">Sair</button></li>
+            </ul>
+          </div>
+        </li>
+        }@else{
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active">
+            <div class="cor fonte-size-16">entrar</div>
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

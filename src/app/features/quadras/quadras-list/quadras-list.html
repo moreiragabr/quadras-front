@@ -1,0 +1,39 @@
+<div class="d-flex container-cards">
+    <!-- @if(authService.isLoggedIn()){
+    <div class="d-flex flex-column card-azul m-auto text-center elemento-animado-3">
+        <div>
+            <img class="imagem-quadra" src="../../../../assets/images/pictures/empresario mexendopc.jpg" alt="">
+        </div>
+        <h2 class="cor2 font-size-32 fonte">
+            É dono de uma quadra?
+        </h2>
+        <div class="botões d-flex flex-row">
+            <div class="botão-2 cor3 font-size-22 fonte-2" routerLink="/nova-quadra">Adicione agora sua quadra em nosso
+                sistema!</div>
+        </div>
+    </div>
+    } -->
+    @for(quadra of quadras; track quadra.id){
+    <div class="d-flex flex-column card-azul m-auto text-center elemento-animado">
+        <div>
+            <img class="imagem-quadra" src="../../../../assets/images/pictures/quadra-minimalista.png" alt="">
+        </div>
+        <h2 class="cor2 font-size-20 fonte">
+            {{quadra.nome}}
+        </h2>
+        <h3 class="cor2 font-size-20 fonte-2">
+            {{quadra.tipoQuadra | capitalize}}
+        </h3>
+        <h3 class="cor2 font-size-16 fonte-2 bairro">
+            {{quadra.bairro}}
+        </h3>
+        <h3 class="cor2 font-size-16 fonte-2">
+            {{quadra.cidade}} - {{quadra.estado}}
+        </h3>
+        <div class="botões d-flex flex-row">
+            <div class="botão cor3 font-size-18 fonte-2" (click)="verInformacoes(quadra.id)">Mais informações</div>
+            <div class="botão cor3 font-size-18 fonte-2" routerLink="/agendar/{{quadra.id}}">Alugar horário</div>
+        </div>
+    </div>
+    }
+</div>

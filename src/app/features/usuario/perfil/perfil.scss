@@ -1,0 +1,119 @@
+.container-custom {
+    height: calc(100vh - 104px);
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.card-principal {
+    background-color: #2B68E0;
+    height: calc(95vh - 100px);
+    width: 90vw;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.imagem-perfil {
+    object-fit: contain;
+    height: 25vh;
+    width: fit-content;
+}
+
+.nome {
+    margin-top: 20px;
+}
+
+.margin-top {
+    margin-top: 25px;
+}
+
+.botao {
+    border-radius: 5px;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    background-color: #F2E8D5;
+    cursor: pointer;
+}
+
+.botao-div {
+    margin-top: auto;
+}
+
+.botao:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.coluna-com-linha {
+    border-right: 2px solid #F2E8D5;
+    padding-right: 25px;
+    margin-right: 25px;
+}
+
+.card-quadra {
+    margin-top: 10px;
+    height: fit-content;
+    width: fit-content;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #0554F2;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.m-b-5 {
+    margin-bottom: 5px;
+}
+
+.botoes {
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.botao-2 {
+    height: fit-content;
+    width: fit-content;
+    max-height: 30px;
+    min-width: 200px;
+    padding: 10px;
+    background-color: #F2E8D5;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.botao-2:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.botao-3 {
+    height: fit-content;
+    width: fit-content;
+    max-height: 30px;
+    min-width: 410px;
+    padding: 10px;
+    background-color: #F2E8D5;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.botao-3:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.lista-quadras{
+    overflow-y: auto;
+    max-height: 80vw;
+}

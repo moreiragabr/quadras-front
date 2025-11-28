@@ -1,0 +1,33 @@
+<div class="container centro">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col principal">
+            <h1>Quadras</h1>
+            <h3>Registro</h3>
+            <div class="row">
+                <form class="form">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label fonte-2 cor-2">Nome</label>
+                        <input [(ngModel)]="registerRequest.nome" name="nome" type="string" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label fonte-2 cor-2">Email</label>
+                        <input [(ngModel)]="registerRequest.email" name="email" type="email" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label fonte-2 cor-2">Senha</label>
+                        <input [(ngModel)]="registerRequest.senha" name="senha" type="password" class="form-control"
+                            id="exampleInputPassword1">
+                    </div>
+                    <div>
+                        <app-address-input (addressChanged)="onAddressReceived($event)"></app-address-input>
+                    </div>
+                    <button (click)="registrar()" type="submit" class="btn btn-primary">Registrar</button>
+                </form>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row linha"></div>
+</div>

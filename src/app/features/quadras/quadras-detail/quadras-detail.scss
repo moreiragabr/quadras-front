@@ -1,0 +1,147 @@
+.container-custom {
+    height: calc(100vh - 104px);
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.card-principal {
+    background-color: #2B68E0;
+    min-height: calc(95vh - 100px);
+    height: fit-content;
+    width: 90vw;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.detalhes-quadra{
+  height: fit-content;
+    min-height: calc(90vh - 100px - 50px - 90px)
+}
+
+.coluna-com-linha {
+  border-right: 2px solid #F2E8D5;
+  padding-right: 25px;
+  margin-right: 25px;
+}
+
+.centralizar{
+  align-items: center;
+  text-align: center;
+  // justify-content: center;
+  justify-items: center;
+  margin: 0 0 0 10px;
+}
+
+.centralizar-2{
+  align-items: center;
+  text-align: center;
+  // justify-content: center;
+  justify-items: center;
+  margin: 0;
+}
+
+.structure-item{
+  margin-bottom: 10px;
+}
+
+.structure-item-2{
+  margin-bottom: 2px;
+}
+
+.structure-item-2 img{
+  object-fit: cover;
+  height: 25px;
+}
+
+
+.nome-tipo-quadra{
+    margin-bottom: 20px;
+}
+
+.foto{
+    border-color: #F2E8D5;
+    border-width: 1px;
+    border-style: solid;
+    object-fit: cover;
+    height: 35vh;
+    width: 20vw;
+    margin-bottom: 30px;
+}
+
+.texto{
+    max-width: 400px;
+    overflow-wrap: break-word;
+}
+
+.estrutura{
+    min-width: 15vw;
+}
+
+.texto-outros{
+  height: fit-content;
+  max-width: 10vw;
+  overflow-wrap: break-word;
+}
+
+.quadras{
+    min-width: 15vw;
+}
+
+.font-size-52 {
+  font-size: 52px;
+}
+
+.font-size-14 {
+  font-size: 14px;
+}
+
+.font-size-15 {
+  font-size: 14px;
+}
+
+.font-size-16 {
+  font-size: 16px;
+}
+
+.font-size-18 {
+  font-size: 18px;
+}
+
+.font-size-20 {
+  font-size: 20px;
+}
+
+.font-size-30{
+    font-size: 30px;
+}
+
+.cor2 {
+  color: #F2E8D5;
+}
+
+.margin{
+  margin-top: 40px;
+}
+
+.margin-0{
+  margin: 0;
+}
+
+.botao-agendar{
+  margin-top: auto;
+  width: fit-content;
+  padding-right: 10px;
+  border-radius: 5px;
+  background-color: #F2E8D5;
+  cursor: pointer;
+}
+
+.botao-agendar:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
