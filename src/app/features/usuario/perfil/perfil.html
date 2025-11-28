@@ -1,0 +1,65 @@
+<div class="container-custom">
+    <div class="card-principal d-flex flex-row elemento-animado-3">
+        <div class="d-flex flex-column coluna-com-linha">
+            <img class="imagem-perfil" src="../../../../assets/images/icons/account-icon.png" alt="">
+            <div class="font-size-25 fonte-3 cor-2 nome">{{perfil?.nome}}</div>
+            <div class="d-flex flex-column margin-top">
+                <div class="font-size-20 fonte">Email</div>
+                <div class="fonte-15 fonte-2 cor-2">{{perfil?.email}}</div>
+            </div>
+            <div class="d-flex flex-column margin-top">
+                <div class="font-size-20 fonte">Endereço</div>
+                <div class="fonte-15 fonte-2 cor-2">{{perfil?.rua}} - {{perfil?.numeroCasa}}</div>
+                <div class="fonte-15 fonte-2 cor-2">{{perfil?.bairro}}</div>
+                <div class="fonte-15 fonte-2 cor-2">{{perfil?.cidade}}</div>
+            </div>
+            <div class="botao-div">
+                <div class="fonte-15 fonte-3 cor botao">Editar</div>
+            </div>
+        </div>
+        @if (reservasAgendadas.length > 0) {
+        <div class="d-flex flex-column lista-quadras coluna-com-linha">
+            <div class="fonte font-size-20">Suas reservas</div>
+            @for (reserva of reservasAgendadas; track reserva.id) {
+            <div class="d-flex flex-column card-quadra">
+                <div class="fonte font-size-20 m-b-10">{{reserva.quadraDetalhada?.nome}}</div>
+                <div class="fonte-2 font-size-20 cor-2 m-b-5">{{reserva.campo?.nome}}</div>
+                <div class="fonte-2 font-size-16 cor-2">{{formatarData(reserva.inicioReserva)}}</div>
+                <div class="fonte-2 font-size-16 cor-2">{{formatarHora(reserva.inicioReserva)}}</div>
+                <div class="d-flex flex-row botoes">
+                    <div class="d-flex botao-2 fonte-2 cor font-size-18"
+                        routerLink="/quadras/{{reserva.quadraDetalhada?.id}}">Ir para
+                        quadra</div>
+                    <div class="d-flex botao-2 fonte-2 cor font-size-18"
+                        routerLink="/agendar/{{reserva.quadraDetalhada?.id}}">Ir para agenda</div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+        <div class="d-flex flex-column lista-quadras">
+            <div class="fonte font-size-20">Suas quadras</div>
+            @for (quadra of quadrasCadastradas; track quadra.id) {
+            <div class="d-flex flex-column card-quadra">
+                <div class="fonte font-size-20 m-b-10">{{quadra.nome}}</div>
+                <div class="fonte-2 font-size-20 cor-2 m-b-5">{{quadra.tipoQuadra | capitalize}}</div>
+                <div class="fonte-2 font-size-16 cor-2">{{quadra.rua}} - {{quadra.numeroCasa}}</div>
+                <div class="fonte-2 font-size-16 cor-2">{{quadra.cidade}} - {{quadra.estado}}</div>
+                <div class="d-flex flex-row botoes">
+                    <div class="d-flex botao-3 fonte-2 cor font-size-18" routerLink="/quadras/{{quadra.id}}">Ir para
+                        quadra</div>
+                    <!-- <div class="d-flex botao-2 fonte-2 cor font-size-18">Editar</div> -->
+                </div>
+            </div>
+            }
+            <div class="d-flex flex-column card-quadra">
+                <div class="d-flex botao-3 fonte-2 cor font-size-18" routerLink="/nova-quadra">Adicionar nova quadra
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="d-flex flex-column">
+
+    </div>
+</div>

@@ -63,13 +63,13 @@
                                 <p><strong>Proprietário:</strong> {{selectedQuadra.proprietario?.nome}}</p>
                                 <p><strong>Tipo de esporte:</strong> {{selectedQuadra.tipoQuadra}}</p>
                                 <p><strong>Valor por hora:</strong> {{selectedQuadra.valorHora}}</p>
-                                <p><strong>Partida gravável:</strong>
+                                <!-- <p><strong>Partida gravável:</strong>
                                     @if(selectedQuadra.partidaGravavel){
                                     Sim
                                     }@else {
                                     Não
                                     }
-                                </p>
+                                </p> -->
                                 <button type="button" class="btn botao-editar m-1"><span
                                         class="material-symbols-outlined" (click)="openModalEditQuadra(selectedQuadra)">
                                         edit
@@ -83,13 +83,13 @@
                                 <h5 class="fonte fonte-preta">Horários disponíveis:</h5>
                                 <hr>
                                 <div class="h-50 overflow-auto">
-                                    @for(horario of selectedQuadra.horarios; track horario.id){
+                                    <!-- @for(horario of selectedQuadra.horarios; track horario.id){
                                     <div>
                                         <p><strong>Horas:</strong></p>
                                         <p>{{horario.horario}}</p>
                                     </div>
                                     <hr>
-                                    }
+                                    } -->
                                 </div>
                             </div>
                         </div>
@@ -133,9 +133,10 @@
                         <option value="BASQUETE">Basquete</option>
                         <option value="FUTSAL">Futsal</option>
                         <option value="VOLEI">Volei</option>
-                        <option value="TENIS">Tenis</option>
+                        <option value="TENIS">Tênis</option>
+                        <option value="BEACHTENIS">Beach tênis</option>
                         <option value="HANDEBOL">Handebol</option>
-                        <option value="AREIA">Areia</option>
+                        <option value="AREIA">Quadra de areia</option>
                         <option value="SOCIETY">Society</option>
                     </select>
                 </div>
@@ -143,16 +144,28 @@
                     <label for="nome" class="form-label">Valor-hora</label>
                     <input type="number" class="form-control" id="nome" [(ngModel)]="newQuadra!.valorHora">
                 </div>
-                <div class="m-2">
+                <!-- <div class="m-2">
                     <label for="nome" class="form-label">Partidas graváveis?</label>
                     <select class="form-select" [(ngModel)]="newQuadra!.partidaGravavel">
                         <option selected value="true">Sim</option>
                         <option value="false">Não</option>
                     </select>
+                </div> -->
+                <div class="m-2">
+                    <label for="nome" class="form-label">Descrição</label>
+                    <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.descricao">
                 </div>
                 <div class="m-2">
-                    <label for="nome" class="form-label">Localização</label>
-                    <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.localizacao">
+                    <label for="nome" class="form-label">Estado</label>
+                    <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.estado">
+                </div>
+                <div class="m-2">
+                    <label for="nome" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.cidade">
+                </div>
+                <div class="m-2">
+                    <label for="nome" class="form-label">Bairro</label>
+                    <input type="text" class="form-control" id="nome" [(ngModel)]="newQuadra!.bairro">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn botao-cancelar" (click)="closeModalNewQuadra()"><span
@@ -172,7 +185,7 @@
 
 
 
-<!-- Modal editar usuário -->
+<!-- Modal editar quadra -->
 <div class="modal fade" id="staticBackdrop" #ModalRefEditQuadra data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1">
     <div class="modal-dialog modal-l">
@@ -237,19 +250,33 @@
                                 <input type="numb" class="form-control form-custom" id="nome"
                                     [(ngModel)]="editedQuadra!.valorHora">
                             </div>
-                            <hr>
+                            <!-- <hr>
                             <div class="mb-3">
                                 <label for="nome" class="form-label">Partidas graváveis?</label>
                                 <select class="form-select" [(ngModel)]="editedQuadra!.partidaGravavel">
                                     <option selected value="true">Sim</option>
                                     <option value="false">Não</option>
                                 </select>
+                            </div> -->
+                            <hr>
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Descrição</label>
+                                <input type="text" class="form-control" id="nome" [(ngModel)]="editedQuadra!.descricao">
                             </div>
                             <hr>
                             <div class="mb-3">
-                                <label for="nome" class="form-label">Localização</label>
-                                <input type="text" class="form-control" id="nome"
-                                    [(ngModel)]="editedQuadra!.localizacao">
+                                <label for="nome" class="form-label">Estado</label>
+                                <input type="text" class="form-control" id="nome" [(ngModel)]="editedQuadra!.estado">
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" id="nome" [(ngModel)]="editedQuadra!.cidade">
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Bairro</label>
+                                <input type="text" class="form-control" id="nome" [(ngModel)]="editedQuadra!.bairro">
                             </div>
                             <hr>
                         </div>

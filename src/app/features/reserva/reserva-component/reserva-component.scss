@@ -1,0 +1,97 @@
+.container-custom {
+    height: calc(100vh - 104px);
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.card-principal {
+    background-color: #2B68E0;
+    min-height: calc(95vh - 100px);
+    height: fit-content;
+    min-width: 50vw;
+    width: fit-content;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.centralizar{
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.m-t{
+    margin-top: 20px;
+}
+
+.m-t-2{
+    margin-top: 5px;
+}
+
+.seletor{
+    width: fit-content;   
+}
+
+.back-color{
+  background-color: #F2E8D5;
+}
+
+.slots-grid{
+    max-width: 35vw;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.btn-slot {
+  padding: 15px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 2px solid transparent; 
+}
+
+.slot-disponivel {
+  background-color: #F2E8D5; /* Cinza/Branco muito claro */
+  color: #0554F2; /* Texto neutro escuro */
+}
+.slot-disponivel:hover {
+  background-color: #c1cce2; /* Levemente mais escuro no hover */
+}
+
+/* Estado de Slot Selecionado (Destaque forte) */
+.slot-selecionado {
+  background-color: #0554F2; /* Verde escuro - Alto Destaque */
+  color: #F2E8D5;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4);
+}
+
+.slot-reservado {
+  background-color: #d3d3d3; /* Vermelho claro */
+  color: #4473d1;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.btn-confirmar-agendamento{
+    height: fit-content;
+    width: fit-content;
+    padding: 7px;
+    background-color: #F2E8D5;
+    color: #0554F2;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-confirmar-agendamento:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}

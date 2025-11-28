@@ -23,7 +23,7 @@
                 <tr>
                     <td class="cor">{{user.nome}}</td>
                     <td class="cor">{{user.email}}</td>
-                    <td class="cor">{{user.tipoUsuario}}</td>
+                    <td class="cor">{{user.role}}</td>
                     <td class="cor icones">
                         <!--
                         <button type="button" class="btn botao-excluir"><span class="material-symbols-outlined icone">
@@ -61,7 +61,7 @@
                                 <p><strong>Cód:</strong> {{selectedUser.id}}</p>
                                 <p><strong>Nome:</strong> {{selectedUser.nome}}</p>
                                 <p><strong>Email:</strong> {{selectedUser.email}}</p>
-                                <p><strong>Tipo de Usuário:</strong> {{selectedUser.tipoUsuario}}</p>
+                                <p><strong>Tipo de Usuário:</strong> {{selectedUser.role}}</p>
                                 <button type="button" class="btn botao-editar m-1"><span
                                         class="material-symbols-outlined" (click)="openModalEditUser(selectedUser)">
                                         edit
@@ -70,40 +70,6 @@
                                         class="material-symbols-outlined" (click)="delete(selectedUser.id)">
                                         delete_forever
                                     </span></button>
-                            </div>
-                            <div class="col-4 border-end ">
-                                <h5 class="fonte fonte-preta">Times presididos:</h5>
-                                <hr>
-                                <div class="h-50 overflow-auto">
-                                    @for(time of selectedUser.timesProprietarios; track time.id){
-                                    <div>
-                                        <p><strong>Nome:</strong></p>
-                                        <p>{{time.nome}}</p>
-                                        <p><strong>Cód:</strong></p>
-                                        <p>{{time.id}}</p>
-                                        <p><strong>Tipo esporte:</strong></p>
-                                        <p>{{time.tipoEsporte}}</p>
-                                    </div>
-                                    <hr>
-                                    }
-                                </div>
-                            </div>
-                            <div class="col-4 border-end overflow-auto">
-                                <h5 class="fonte fonte-preta">Times jogados:</h5>
-                                <hr>
-                                <div class="h-50 overflow-auto">
-                                    @for(time of selectedUser.times; track time.id){
-                                    <div>
-                                        <p><strong>Nome:</strong></p>
-                                        <p>{{time.nome}}</p>
-                                        <p><strong>Cód:</strong></p>
-                                        <p>{{time.id}}</p>
-                                        <p><strong>Tipo esporte:</strong></p>
-                                        <p>{{time.tipoEsporte}}</p>
-                                    </div>
-                                    <hr>
-                                    }
-                                </div>
                             </div>
                             <div class="col-4 border-end overflow-auto">
                                 <h5 class="fonte fonte-preta">Quadras:</h5>
@@ -126,7 +92,7 @@
                                 <h5 class="fonte fonte-preta">Reservas:</h5>
                                 <hr>
                                 <div class="h-50 overflow-auto">
-                                    @for(reserva of selectedUser.reservas; track reserva.id){
+                                   <!-- @for(reserva of selectedUser.reservas; track reserva.id){
                                     <div>
                                         <p><strong>Horario:</strong></p>
                                         <p>{{reserva.horario?.horario}}</p>
@@ -136,7 +102,7 @@
                                         <p>{{reserva.quadra?.nome}}</p>
                                     </div>
                                     <hr>
-                                    }
+                                    }  -->
                                 </div>
                             </div>
                         </div>

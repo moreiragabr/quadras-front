@@ -1,0 +1,44 @@
+<div class="item-selector-container">
+    <div class="selector-section">
+        <select id="itemSelect" [(ngModel)]="itemSelecionado" (change)="adicionarItem()"
+            class="item-select form-select back-color">
+            <option value=""></option>
+            @for (item of itensDisponiveis; track item.identificador) {
+            <option [value]="item.nome" [disabled]="itemJaAdicionado(item.identificador)">
+                {{ item.nome }}
+                @if (itemJaAdicionado(item.identificador)) {
+                (Já adicionado)
+                }
+            </option>
+            }
+        </select>
+    </div>
+
+    <!-- Lista de Itens Adicionados -->
+    @if (itensSelecionados.length > 0) {
+    <div class="itens-lista">
+        @for (item of itensSelecionados; track item.id; let i = $index) {
+        <div class="item-card d-flex flex-row">
+                <div class="d-flex flex-row">
+                    <div class="d-flex flex-row">
+                        <button (click)="diminuirQuantidade(i)" [disabled]="item.quantidade <= 1" class="minus-btn qty-btn">
+                            <img class="cntrl-img" src="../../../assets/images/icons/-.png" alt="">
+                        </button>
+                        <button (click)="aumentarQuantidade(i)" class="qty-btn plus-btn">
+                            <img class="cntrl-img" src="../../../assets/images/icons/+.png" alt="">
+                        </button>
+                    </div>
+                    <span class="fonte-2 font-size-25 quantidade">{{ item.quantidade }}</span>
+                </div>
+
+            <div class="item-nome">
+                <div class=""><span class="fonte-2 font-size-20 cor-2 m-auto">{{ item.nome }}</span></div>
+            </div>
+            <div class="rmv">
+                <button (click)="removerItem(i)" class="remove-btn">
+                    <img class="cntrl-img" src="../../../assets/images/icons/x.png" alt="">
+                </button>
+            </div>
+        </div>
+        }
+    </div>}

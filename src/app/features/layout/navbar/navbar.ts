@@ -1,20 +1,28 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/service/authService/auth-service';
 import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
+import { AsyncPipe, NgIf } from '@angular/common'; // Módulos necessários
+import { User } from '../../../core/models/user';
+import { FirstNamePipe } from '../../../shared/pipes/first-name-pipe';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink],
+  // IMPORTANTE: Adicionar NgIf e AsyncPipe aos imports para uso no template
+  standalone: true, // Assumindo que o componente é standalone
+  imports: [RouterLink, RouterModule, AsyncPipe, FirstNamePipe],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss'
 })
 export class Navbar {
+  
   authService = inject(AuthService);
+  
+  // 1. Variável reativa: Armazena o Observable do usuário
+  currentUser$: Observable<User | null> = this.authService.currentUser$;
 
-  ngInit(){
-    
-  }
+  // 2. Removemos ngOnInit, pois a assinatura é feita diretamente na inicialização do componente
 
   sair() {
     Swal.fire({
@@ -28,7 +36,6 @@ export class Navbar {
     }).then((result) => {
       if (result.isConfirmed) {
         this.authService.logout();
-        this.authService.deauthentication();
       }
     });
   }

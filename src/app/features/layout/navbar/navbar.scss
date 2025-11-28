@@ -1,10 +1,34 @@
 .custom {
-    background-color: #0554F2;
+    padding: 30px 40px 30px 40px;
+    z-index: 2;
+    background: linear-gradient(to bottom,#F2E8D5 0%,#F2E8D5 50%,transparent 100%);
 }
 
 .cor{
-    color: #F2E8D5;
+    color: #0554F2;
     font-family: "Rubik Mono One", monospace;
     font-weight: 400;
     font-style: normal;
+    margin: 0;
+    font-size: 20px;
+}
+
+.fonte-size-16{
+    font-size: 16px;
+}
+
+.nav-item{
+    margin: 0px 20px 0px 20px;
+}
+
+/* Estilo para o item ativo na navbar */
+.navbar-nav .nav-link.active {
+  position: relative;
+  border-radius: 6px;
+  background-color: #056CF2;
+}
+
+/* Ajuste para garantir que o texto mantenha a cor correta quando ativo */
+.navbar-nav .nav-link.active .cor {
+    color: #F2E8D5;
 }

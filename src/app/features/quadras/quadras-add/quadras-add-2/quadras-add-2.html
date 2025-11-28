@@ -1,0 +1,25 @@
+<div class="container-custom">
+    <div class="card-principal d-flex flex-column elemento-animado-3">
+        <div class="nome-tipo-quadra">
+            <div>
+                <h1 class="font-size-30 fonte">
+                    Adicione sua quadra!
+                </h1>
+            </div>
+        </div>
+        <div class="detalhes-quadra d-flex flex-row">
+            <app-address-input (addressChanged)="onAddressReceived($event)"></app-address-input>
+            <app-operating-hours (schedulesChanged)="onSchedulesReceived($event)"></app-operating-hours>
+            <div class="nome margin-bottom">
+                <div>
+                    <h4 class="fonte-2 cor-2 titulo-2">Qual é o valor-hora médio de sua quadra?</h4>
+                    <input type="number" class="form-control back-color max-width" id="nome"
+                        [(ngModel)]="this.addressData.valorHora">
+                </div>
+                <div class="d-flex centro">
+                    <div class="botão fonte-3 cor" (click)="nextStep()">Continuar</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,11 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { QuadraService } from '../../../core/service/quadraService/quadra-service';
+import { Quadra } from '../../../core/models/quadra';
+import { CapitalizePipe } from '../../../shared/pipes/capitalize-pipe';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../core/service/authService/auth-service';
 
 @Component({
   selector: 'app-quadras-list',
-  imports: [],
+  imports: [CapitalizePipe, RouterLink],
   templateUrl: './quadras-list.html',
   styleUrl: './quadras-list.scss'
 })
 export class QuadrasList {
+  quadraService = inject(QuadraService);
+  authService = inject(AuthService);
+  
+  constructor(private router: Router) {}
+
+  quadras!: Quadra[];
+
+  verInformacoes(quadraId: number): void {
+    this.router.navigate(['/quadras', quadraId]);
+  }
+
+  ngOnInit(): void {
+    this.quadraService.findAll().subscribe({
+      next: (dados) => {
+        this.quadras = dados;
+      },
+      error: (erro) => {
+        // Se ocorrer um erro na requisição, ele é capturado aqui
+        console.error('Erro ao carregar os dados:', erro);
+      }
+    })
+  }
 
 }

@@ -1,0 +1,38 @@
+<form [formGroup]="form">
+    <div class="days-list coluna-com-linha" formArrayName="schedules">
+        <p class="fonte font-size-18">Horário de funcionamento</p>
+        @for (control of schedules.controls; track $index) {
+        <div [formGroupName]="$index" class="day-row" [class.closed]="!control.get('isOpen')?.value">
+            <div class="day-info">
+                <span class="fonte-2 cor-2 font-size-18 day-name">{{ control.get('dayName')?.value }}</span>
+                <div>
+                    <label class="switch">
+                        <input type="checkbox" formControlName="isOpen">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="status-text fonte-2 cor-2 font-size-12">
+                        {{ control.get('isOpen')?.value ? 'Aberto' : 'Fechado' }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="time-inputs">
+                @if (control.get('isOpen')?.value) {
+                <div class="input-group">
+                    <input type="time" formControlName="openTime">
+                </div>
+
+                <div class="divisao font-size-18 fonte-2 cor-2">-</div>
+
+                <div class="input-group">
+                    <input type="time" formControlName="closeTime">
+                </div>
+                } @else {
+                <span class="fonte-2 cor-2 font-size-12">Não há expediente neste dia</span>
+                }
+            </div>
+
+        </div>
+        }
+    </div>
+</form>

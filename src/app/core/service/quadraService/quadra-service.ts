@@ -2,13 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Quadra } from '../../models/quadra';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuadraService {
 
-  API = "http://localhost:8080/api/quadras";
+  private readonly API_KEY = environment.SERVIDOR; 
+
+  API = `${this.API_KEY}/api/quadras`;
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +21,14 @@ export class QuadraService {
 
   findAll(): Observable<Quadra[]> {
     return this.http.get<Quadra[]>(this.API);
+  }
+
+  findById(id:number): Observable<Quadra>{
+    return this.http.get<Quadra>(this.API + "/" + id);
+  }
+
+  findByCampoId(id:number): Observable<Quadra>{
+    return this.http.get<Quadra>(this.API + "/campo/" + id)
   }
 
   save(quadra: any): Observable<Quadra> {

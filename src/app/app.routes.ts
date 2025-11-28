@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { Login } from './features/login/login';
+import { LoginComponent } from './features/usuario/login/login';
 import { Home } from './features/home/home';
 import { authGuard } from './core/guards/auth-guard';
 import { Structure } from './features/layout/structure/structure';
@@ -10,11 +10,25 @@ import { adminGuard } from './core/guards/admin-guard';
 import { UsuariosListAdmin } from './features/admin/lists/usuarios-list-admin/usuarios-list-admin';
 import { QuadrasListAdmin } from './features/admin/lists/quadras-list-admin/quadras-list-admin';
 import { TimesListAdmin } from './features/admin/lists/times-list-admin/times-list-admin';
+import { Mapa } from './features/mapa/mapa';
+import { QuadrasDetail } from './features/quadras/quadras-detail/quadras-detail';
+import { QuadrasAdd } from './features/quadras/quadras-add/quadras-add';
+import { QuadrasAdd2 } from './features/quadras/quadras-add/quadras-add-2/quadras-add-2';
+import { notAutGuardGuard } from './core/guards/not-aut-guard-guard';
+import { Perfil } from './features/usuario/perfil/perfil';
+import { Registro } from './features/usuario/registro/registro';
+import { AgendamentoComponent } from './features/reserva/reserva-component/reserva-component';
 
 export const routes: Routes = [
     {
         path: 'login',
-        component: Login
+        component: LoginComponent,
+        canActivate: [notAutGuardGuard],
+    },
+    {
+        path: 'registrar',
+        component: Registro,
+        canActivate: [notAutGuardGuard],
     },
     {
         path: '',
@@ -25,42 +39,75 @@ export const routes: Routes = [
                 path: 'times',
                 loadComponent: () => TimesList,
                 data: { preload: true },
-                canActivate: [authGuard]
+                canActivate: [authGuard],
+            },
+            {
+                path: 'mapa',
+                loadComponent: () => Mapa,
+                data: { preload: true },
             },
             {
                 path: 'quadras',
                 loadComponent: () => QuadrasList,
                 data: { preload: true },
-                canActivate: [authGuard]
+            },
+            {
+                path: 'quadras/:id',
+                loadComponent: () => QuadrasDetail,
+                data: { preload: true },
             },
             {
                 path: 'admin-dashboard',
                 loadComponent: () => AdminDashboard,
                 data: { preload: true },
-                canActivate: [adminGuard, authGuard]
+                canActivate: [adminGuard, authGuard],
             },
             {
                 path: 'usuarios-admin-list',
                 loadComponent: () => UsuariosListAdmin,
                 data: { preload: true },
-                canActivate: [adminGuard, authGuard]
+                canActivate: [adminGuard, authGuard],
             },
             {
                 path: 'quadras-admin-list',
                 loadComponent: () => QuadrasListAdmin,
                 data: { preload: true },
-                canActivate: [adminGuard, authGuard]
+                canActivate: [adminGuard, authGuard],
             },
             {
                 path: 'times-admin-list',
                 loadComponent: () => TimesListAdmin,
                 data: { preload: true },
-                canActivate: [adminGuard, authGuard]
+                canActivate: [adminGuard, authGuard],
             },
-        ]
+            {
+                path: 'nova-quadra',
+                loadComponent: () => QuadrasAdd,
+                data: { preload: true },
+                canActivate: [authGuard],
+            },
+            {
+                path: 'nova-quadra-2',
+                loadComponent: () => QuadrasAdd2,
+                data: { preload: true },
+                canActivate: [authGuard],
+            },
+            {
+                path: 'perfil',
+                loadComponent: () => Perfil,
+                data: { preload: true },
+                canActivate: [authGuard],
+            },
+            {
+                path: 'agendar/:id',
+                loadComponent: () => AgendamentoComponent,
+                data: { preload: true },
+                canActivate: [authGuard],
+            },
+        ],
     },
     {
         path: '**',
-        redirectTo: ''
-    }
+        redirectTo: '',
+    },
 ];

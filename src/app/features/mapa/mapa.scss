@@ -1,0 +1,22 @@
+.map-container {
+    position: fixed;
+    /* Muda de absolute para fixed */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    /* Remove a margem anterior */
+    z-index: 1;
+    /* Mapa fica atrás da navbar */
+}
+
+.map-frame {
+    border: none;
+    /* Remove a borda preta */
+    height: 100%;
+}
+
+#map {
+    height: 100%;
+}

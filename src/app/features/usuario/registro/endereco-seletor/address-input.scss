@@ -1,0 +1,53 @@
+
+.form-group {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+
+  input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}
+
+/* Estilo visual para campos bloqueados */
+.readonly-input {
+  background-color: #e9ecef; /* Cinza claro */
+  color: #495057;
+  cursor: not-allowed;
+  border-color: #dee2e6;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.address-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.back-color{
+  background-color: #F2E8D5;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .address-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.coluna-com-linha {
+  border-right: 2px solid #F2E8D5;
+  padding-right: 25px;
+  margin-right: 25px;
+}
