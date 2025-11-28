@@ -2,13 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Time } from '../../models/time';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimeService {
 
-  API = "http://localhost:8080/api/time/";
+    private readonly API_KEY = environment.SERVIDOR; 
+
+  API = `${this.API_KEY}/api/time/`;
 
   constructor(private http: HttpClient) { }
 

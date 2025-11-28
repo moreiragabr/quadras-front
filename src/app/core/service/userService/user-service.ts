@@ -2,13 +2,17 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { catchError, delay, map, Observable, of } from 'rxjs';
 import { User } from '../../models/user';
-import { Quadra } from '../../models/quadra';
+import { environment } from '../../../../environments/environment.prod';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  API = 'http://localhost:8080/api/usuario/';
+
+  private readonly API_KEY = environment.SERVIDOR; 
+
+  API = `${this.API_KEY}/api/usuario/`;
 
   constructor(private http: HttpClient) { }
 

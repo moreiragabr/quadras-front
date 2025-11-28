@@ -6,13 +6,16 @@ import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { LoginRequest } from '../../models/loginRequest';
 import { LoginResponse } from '../../models/loginResponse';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private readonly apiUrl = 'http://localhost:8080/api/auth';
+  private readonly API_KEY = environment.SERVIDOR; 
+
+  private readonly apiUrl = `${this.API_KEY}/api/auth`;
 
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
