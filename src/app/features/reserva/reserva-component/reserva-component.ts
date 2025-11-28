@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Campo } from '../../../core/models/campo';
 import { AuthService } from '../../../core/service/authService/auth-service';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../environments/environment.prod';
 
 // Definições de tipos adaptadas ao seu modelo de Campo
 interface HorarioSlot {
@@ -32,6 +33,8 @@ export class AgendamentoComponent implements OnInit {
   private router = inject(Router);
   private datePipe = inject(DatePipe);
 
+  private readonly API_KEY = environment.SERVIDOR; 
+
   quadraId!: number;
   hoje: string = this.datePipe.transform(new Date(), 'yyyy-MM-dd') || '';
   dataSelecionada: string = this.hoje;
@@ -46,8 +49,8 @@ export class AgendamentoComponent implements OnInit {
   mensagemSucesso: string | null = null;
   mensagemErro: string | null = null;
 
-  private readonly apiUrl = 'http://localhost:8080/api/reservas';
-  private readonly quadraApiUrl = 'http://localhost:8080/api/quadras';
+  private readonly apiUrl = `${this.API_KEY}/api/reservas`;
+  private readonly quadraApiUrl = `${this.API_KEY}/api/quadras`;
 
 
   ngOnInit(): void {
