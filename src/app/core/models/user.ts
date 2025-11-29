@@ -13,9 +13,10 @@ export class User {
     cep? : string;
     cidade?: string;
     estado?: string;
+    lot?: string;
+    lat?: string;
     bairro?: string;
     rua?: string;
     numeroCasa?: string;
-    lot?: string;
-    lat?: string;
+    
 }
