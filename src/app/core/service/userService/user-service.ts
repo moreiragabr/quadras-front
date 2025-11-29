@@ -51,12 +51,7 @@ export class UserService {
     return this.http.put<User>(this.API + 'update/' + id, user);
   }
 
-  adicionarTimeProprietario(idUser: number, idTeam: number): Observable<User> {
-    return this.http.put<User>(
-      this.API + 'adicionarTimeProprietario?idUsuario=' + idUser + '&idTime=' + idTeam,
-      null
-    );
-  }
+  
 
   adicionarTimeJogador(idUser: number, idTeam: number): Observable<User> {
     return this.http.put<User>(
@@ -74,6 +69,12 @@ export class UserService {
   removerTimeJogador(idUser: number, idTeam: number): Observable<User> {
     return this.http.delete<User>(
       this.API + 'removerTimesJogador?idUsuario=' + idUser + '&idTime=' + idTeam
+    );
+  }
+  adicionarTimeProprietario(idUser: number, idTeam: number): Observable<User> {
+    return this.http.put<User>(
+      this.API + 'adicionarTimeProprietario?idUsuario=' + idUser + '&idTime=' + idTeam,
+      null
     );
   }
 
