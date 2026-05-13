@@ -31,7 +31,7 @@ export class Registro {
 
   loginRequest: LoginRequest = {
     email: '',
-    senha: ''
+    password: ''
   }
 
   errorMessage: string | null = null;
@@ -70,7 +70,7 @@ export class Registro {
         });
 
         this.loginRequest.email = this.registerRequest.email;
-        this.loginRequest.senha = this.registerRequest.senha;
+        this.loginRequest.password = this.registerRequest.senha;
 
         this.authService.login(this.loginRequest).subscribe({
           next: (response) => {
