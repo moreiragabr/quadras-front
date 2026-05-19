@@ -1,14 +1,28 @@
-import { writeFileSync } from 'fs';
+import { writeFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { dirname, join, resolve } from 'path';
 import { config } from 'dotenv';
-
-// Configura dotenv para ler o .env
-config();
 
 // Obter __dirname em módulos ES
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// Tenta localizar o .env na raiz do projeto (subindo de src/environments para a raiz)
+const envPath = resolve(__dirname, '../../.env');
+
+console.log('🔍 Procurando arquivo .env em:', envPath);
+console.log('file exists:', existsSync(envPath));
+
+// Configura dotenv para ler o .env do caminho absoluto
+const result = config({ path: envPath });
+
+if (result.error) {
+  console.error('❌ Erro ao carregar .env:', result.error);
+} else {
+  console.log('✅ Arquivo .env carregado com sucesso!');
+}
+
+console.log('API_URL_PROD detectada:', process.env['API_URL_PROD']);
 
 const devContent = `export const environment = {
   production: false,
@@ -20,7 +34,7 @@ const devContent = `export const environment = {
 const prodContent = `export const environment = {
   production: true,
   locationIqApiKey: "${process.env['LOCATION_IQ_API_KEY'] || ''}",
-  SERVIDOR: "${process.env['API_URL_PROD'] || 'http://fallback-ip:8080'}" // Variável PROD (IP Público)
+  SERVIDOR: "${process.env['API_URL_PROD'] || 'https://quadras-api.lab.local'}"
 };
 `;
 
