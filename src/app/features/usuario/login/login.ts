@@ -18,7 +18,7 @@ export class LoginComponent { // Renomeado para LoginComponent por convenção
   router = inject(Router);
 
   // DTO de requisição tipado
-  loginRequest: LoginRequest = { email: '', senha: '' };
+  loginRequest: LoginRequest = { email: '', password: '' };
 
   // Variável para armazenar mensagens de erro específicas
   errorMessage: string | null = null;
@@ -26,7 +26,7 @@ export class LoginComponent { // Renomeado para LoginComponent por convenção
   login() {
 
     // 1. Validação básica
-    if (!this.loginRequest.email || !this.loginRequest.senha) {
+    if (!this.loginRequest.email || !this.loginRequest.password) {
       Swal.fire({
         title: 'Insira todos os dados!',
         icon: 'warning',

@@ -21,6 +21,7 @@ export class AuthService {
   public currentUser$ = this.currentUserSubject.asObservable();
 
   private readonly TOKEN_KEY = 'auth_token';
+  private readonly USER_KEY = 'auth_user';
 
   private http = inject(HttpClient);
   private router = inject(Router);
@@ -30,10 +31,22 @@ export class AuthService {
 
 
   constructor() {
+    this.loadUserFromStorage();
   }
 
   public initializeSession(): void {
     this.loadUserFromToken();
+  }
+
+  private loadUserFromStorage(): void {
+    const storedUser = localStorage.getItem(this.USER_KEY);
+    if (storedUser) {
+      try {
+        this.currentUserSubject.next(JSON.parse(storedUser));
+      } catch (e) {
+        localStorage.removeItem(this.USER_KEY);
+      }
+    }
   }
 
 
@@ -49,6 +62,7 @@ export class AuthService {
           email: response.email,
           role: response.role
         };
+        this.storeUser(user);
         this.currentUserSubject.next(user);
 
         console.log('Login bem-sucedido. Usuário logado:', user);
@@ -63,6 +77,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.USER_KEY);
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
     console.log('Logout realizado.');
@@ -91,7 +106,7 @@ export class AuthService {
 
   isAdmin(): boolean {
     const user = this.currentUserSubject.getValue();
-    return !!user && user.role === 'ADMIN';
+    return !!user && user.role === 'SYSJEGG_ADMIN';
   }
 
 
@@ -111,12 +126,16 @@ export class AuthService {
     localStorage.setItem(this.TOKEN_KEY, token);
   }
 
+  private storeUser(user: User): void {
+    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+  }
+
 
   private loadUserFromToken(): void {
     const token = this.getToken();
     if (!token) {
-      this.currentUserSubject.next(null);
-      this.isInitializedSubject.next(true); // Se não há token, está pronto!
+      this.logout();
+      this.isInitializedSubject.next(true);
       return;
     }
 
@@ -135,10 +154,11 @@ export class AuthService {
       })
     ).subscribe(user => {
       if (user) {
+        this.storeUser(user);
         this.currentUserSubject.next(user);
         console.log('Sessão restaurada para:', user.email);
       } else {
-        this.currentUserSubject.next(null);
+        this.logout();
       }
       this.isInitializedSubject.next(true);
     });
